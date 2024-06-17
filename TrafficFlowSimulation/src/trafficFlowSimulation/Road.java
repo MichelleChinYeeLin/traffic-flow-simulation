@@ -5,18 +5,22 @@ import java.util.ArrayList;
 import org.locationtech.jts.geom.Coordinate;
 
 public class Road {
+	private int roadId;
 	private String name;
-	private Coordinate[] coordinateList;
-	private ArrayList<Intersection> intersectionList;
+	private ArrayList<RoadNode> roadNodeList;
 	private boolean isOneWay;
 	private int laneNum;
 	
-	public Road(String name, Coordinate[] coordinateList, boolean isOneWay, int laneNum) {
+	public Road(int roadId, String name, ArrayList<RoadNode> roadNodeList, boolean isOneWay, int laneNum) {
+		this.roadId = roadId;
 		this.name = name;
-		this.coordinateList = coordinateList;
+		this.roadNodeList = roadNodeList;
 		this.isOneWay = isOneWay;
 		this.laneNum = laneNum;
-		intersectionList = new ArrayList<Intersection>();
+	}
+	
+	public int getRoadId() {
+		return roadId;
 	}
 
 	public String getName() {
@@ -26,13 +30,9 @@ public class Road {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public Coordinate[] getCoordinateList() {
-		return coordinateList;
-	}
-
-	public void setCoordinateList(Coordinate[] coordinateList) {
-		this.coordinateList = coordinateList;
+	
+	public ArrayList<RoadNode> getRoadNodeList() {
+		return roadNodeList;
 	}
 	
 	public boolean isOneWay() {
@@ -50,8 +50,33 @@ public class Road {
 	public void setLaneNum(int laneNum) {
 		this.laneNum = laneNum;
 	}
-
-	public void addIntersection(Intersection intersection) {
-		intersectionList.add(intersection);
+	
+	public ArrayList<RoadNode> getAdjacentRoadNodes(RoadNode roadNode) {
+		ArrayList<RoadNode> adjacentRoadNodesList = new ArrayList<>();
+		
+		for (int i = 0; i < roadNodeList.size(); i++) {
+			if (roadNodeList.get(i).equals(roadNode)) {
+				
+				if (i + 1 < roadNodeList.size()) {
+					adjacentRoadNodesList.add(roadNodeList.get(i + 1));
+				}
+				
+				if (!isOneWay && ((i - 1) >= 0)) {
+					adjacentRoadNodesList.add(roadNodeList.get(i - 1));
+				}
+				
+				break;
+			}
+		}
+		return adjacentRoadNodesList;
+	}
+	
+	public boolean isLastRoadNode(RoadNode roadNode) {
+		System.out.println("Tested: " + TrafficFlowSimulationBuilder.roadHashMap.get(roadId).getName());
+		if (roadNodeList.get(roadNodeList.size() - 1).equals(roadNode)) {
+			return true;
+		}
+		
+		return false;
 	}
 }

@@ -3,4 +3,5 @@
 	xsi:noNamespaceSchemaLocation="http://repast.org/scenario/context">
   	<projection type="geography" id="TrafficFlowMap"/>
   	<projection type="network" id="Network"/>
+  	<projection type="network" id="Test Network"/>
 </context>

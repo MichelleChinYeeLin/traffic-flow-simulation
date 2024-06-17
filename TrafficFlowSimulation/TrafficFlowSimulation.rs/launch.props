@@ -1,0 +1,6 @@
+#
+#Fri Jun 14 10:12:53 SGT 2024
+incoming=tcp\://127.0.0.1\:5555
+outgoing=tcp\://127.0.0.1\:5556
+scenario=..\\TrafficFlowSimulation.rs
+working.directory=../
