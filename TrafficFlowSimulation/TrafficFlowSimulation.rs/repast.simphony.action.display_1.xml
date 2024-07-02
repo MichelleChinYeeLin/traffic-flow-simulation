@@ -7,6 +7,10 @@
       <string>repast.simphony.visualization.gis3D.style.DefaultMarkStyle</string>
     </entry>
     <entry>
+      <string>trafficFlowSimulation.Junction</string>
+      <string>repast.simphony.visualization.gis3D.style.DefaultMarkStyle</string>
+    </entry>
+    <entry>
       <string>trafficFlowSimulation.RoadNode</string>
       <string>repast.simphony.visualization.gis3D.style.EditedMarkStyle</string>
     </entry>
@@ -16,7 +20,7 @@
     </entry>
     <entry>
       <string>trafficFlowSimulation.Vehicle</string>
-      <string>repast.simphony.visualization.gis3D.style.DefaultMarkStyle</string>
+      <string>repast.simphony.visualization.gis3D.style.EditedMarkStyle</string>
     </entry>
   </styles>
   <editedStyles>
@@ -34,7 +38,7 @@
     </entry>
     <entry>
       <string>trafficFlowSimulation.Vehicle</string>
-      <null/>
+      <string>trafficFlowSimulation.Vehicle.style_0.xml</string>
     </entry>
   </editedStyles>
   <netStyles>
@@ -57,25 +61,29 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>-103909000</hashCode>
+    <hashCode>970799440</hashCode>
   </schedParams>
   <layoutInterval>0</layoutInterval>
   <layerOrder>
     <entry>
       <string>trafficFlowSimulation.TrafficSignal</string>
-      <int>3</int>
+      <int>4</int>
     </entry>
     <entry>
-      <string>trafficFlowSimulation.RoadNode</string>
+      <string>trafficFlowSimulation.Junction</string>
       <int>0</int>
     </entry>
     <entry>
-      <string>trafficFlowSimulation.Intersection</string>
+      <string>trafficFlowSimulation.RoadNode</string>
       <int>1</int>
     </entry>
     <entry>
-      <string>trafficFlowSimulation.Vehicle</string>
+      <string>trafficFlowSimulation.Intersection</string>
       <int>2</int>
+    </entry>
+    <entry>
+      <string>trafficFlowSimulation.Vehicle</string>
+      <int>3</int>
     </entry>
   </layerOrder>
   <projections>

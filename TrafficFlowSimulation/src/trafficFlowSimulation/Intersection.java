@@ -43,13 +43,14 @@ public class Intersection {
 				else if (!road.isLastRoadNode(node)) {
 					connectedList.add(node);
 				}
-				else {
-					System.out.println("Unable to add node! Not allowed to move there");
-				}
 			}
 		}
 		
 		return connectedList;
+	}
+	
+	public TrafficSignal getTrafficSignal() {
+		return trafficSignal;
 	}
 
 	public void addRoadNode(RoadNode roadNode) {

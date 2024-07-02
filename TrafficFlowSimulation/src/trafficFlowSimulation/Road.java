@@ -72,11 +72,38 @@ public class Road {
 	}
 	
 	public boolean isLastRoadNode(RoadNode roadNode) {
-		System.out.println("Tested: " + TrafficFlowSimulationBuilder.roadHashMap.get(roadId).getName());
 		if (roadNodeList.get(roadNodeList.size() - 1).equals(roadNode)) {
 			return true;
 		}
 		
 		return false;
+	}
+
+	public RoadNode getFirstRoadNode() {
+		return roadNodeList.get(0);
+	}
+	
+	public RoadNode getLastRoadNode() {
+		return roadNodeList.get(roadNodeList.size() - 1);
+	}
+	
+	public boolean checkRouteDirection(RoadNode current, RoadNode next) {
+		boolean isReverseDirection = (Boolean) null;
+		
+		for (int i = 0; i < roadNodeList.size() - 1; i++) {
+			if (roadNodeList.get(i) == current) {
+				if (roadNodeList.get(i + 1) == next) {
+					isReverseDirection = false;
+					return isReverseDirection;
+				}
+				
+				else if (roadNodeList.get(i - 1) == next) {
+					isReverseDirection = true;
+					return isReverseDirection;
+				}
+			}
+		}
+		
+		return isReverseDirection;
 	}
 }
