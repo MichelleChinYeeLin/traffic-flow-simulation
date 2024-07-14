@@ -1,7 +1,9 @@
 package trafficFlowSimulation;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -11,6 +13,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import static spark.Spark.get;
+import static spark.Spark.post;
+import static spark.Spark.port;
+
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.servlet.ServletHandler;
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.geometry.jts.ReferencedEnvelope;
@@ -26,6 +34,7 @@ import org.locationtech.jts.geom.Point;
 import org.opengis.feature.simple.SimpleFeature;
 
 import repast.simphony.context.Context;
+import repast.simphony.context.DefaultContext;
 import repast.simphony.context.space.continuous.ContinuousSpaceFactory;
 import repast.simphony.context.space.continuous.ContinuousSpaceFactoryFinder;
 import repast.simphony.context.space.gis.GeographyFactory;
@@ -36,7 +45,9 @@ import repast.simphony.context.space.grid.GridFactoryFinder;
 import repast.simphony.dataLoader.ContextBuilder;
 import repast.simphony.dataLoader.ui.wizard.builder.NetworkLayer;
 import repast.simphony.engine.environment.RunEnvironment;
+import repast.simphony.engine.environment.RunEnvironmentBuilder;
 import repast.simphony.engine.schedule.DefaultSchedulableActionFactory;
+import repast.simphony.engine.schedule.ISchedule;
 import repast.simphony.engine.schedule.Schedule;
 import repast.simphony.engine.schedule.ScheduleParameters;
 import repast.simphony.gis.util.GeometryUtil;
@@ -61,10 +72,14 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 	private List<TrafficSignal> trafficSignalList = new ArrayList<TrafficSignal>();
 	private List<Junction> junctionList = new ArrayList<Junction>();
 	private List<RoadNode> spawnPointList = new ArrayList<>();
+	private List<Vehicle> vehicleList = new ArrayList<>();
 	private RoadNode test1 = null;
 	private RoadNode test1a = null;
 	private RoadNode test2 = null;
-	private int vehicleNumGenerator = 500;
+	private int vehicleNumGenerator = 200;
+	private int vehicleCount = 0;
+	private boolean isFirstInitialization = true;
+	private Schedule vehicleGeneratorSchedule;
 	
 	public static Context context;
 	public static Geography geography;
@@ -91,14 +106,250 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 		
 		generateVehicleSpawnPointList();
 		
-		Schedule rneSchedule = (Schedule) RunEnvironment.getInstance().getCurrentSchedule();
+		vehicleGeneratorSchedule = (Schedule) RunEnvironment.getInstance().getCurrentSchedule();
 		ScheduleParameters rneScheduleParameters = ScheduleParameters.createRepeating(1, 500);
-		rneSchedule.schedule(rneScheduleParameters, this, "generateVehicleAgent");
+		vehicleGeneratorSchedule.schedule(rneScheduleParameters, this, "generateVehicleAgent");
 		
-//		Vehicle testVehicle1 = new Vehicle(test1, test2, "last");
-//		Vehicle testVehicle2 = new Vehicle(test1a, test2, "front");
+		if (isFirstInitialization) {
+			initializeEndpoints();
+			isFirstInitialization = false;
+		}
 		
 		return context;
+	}
+	
+	public void initializeSimulation() {
+		Context<Object> newContext = new DefaultContext<>("MySimulation");
+		build(newContext);
+	}
+	
+	public void initializeEndpoints() {
+		try {
+            port(4567);
+
+            TrafficFlowSimulation simulation = new TrafficFlowSimulation();
+            simulation.run();
+
+            get("/vehicles", (req, res) -> {
+            	String response = "{\"data\":[";
+            	
+            	for (int i = 0; i < vehicleList.size(); i++) {
+            		Vehicle vehicle = vehicleList.get(i);
+            		
+            		if (!vehicle.isRouteCompleted()) {
+            			Coordinate vehicleCoordinate = vehicle.getCurrentCoordinate();
+                		String vehicleString = "{\"name\": " + vehicle.getName() + ", \"xCoordinate\": " + vehicleCoordinate.getX() + ", \"yCoordinate\": " + vehicleCoordinate.getY() + "}";
+                		response += vehicleString;
+                		
+                		if (i != vehicleList.size() - 1) {
+                			response += ", ";
+                		}
+            		}
+            	}
+            	
+            	response += "]}";
+            	
+                return response;
+            });
+            
+            get("/roads", (req, res) -> {
+            	String response = "{\"data\":[";
+            	
+            	for (int i = 0; i < roadList.size(); i++) {
+            		Road road = roadList.get(i);
+            		
+            		if (road != null) {
+            			String roadString = "{\"name\": " + road.getRoadId() + ", \"node\":[";
+                		for (int j = 0; j < road.getRoadNodeList().size(); j++) {
+                			RoadNode node = road.getRoadNodeList().get(j);
+                			Coordinate nodeCoordinate = node.getCoordinate();
+                			roadString += "{\"xCoordinate\": " + nodeCoordinate.getX() + ", \"yCoordinate\": " + nodeCoordinate.getY() + "}";
+                			
+                			if (j < road.getRoadNodeList().size() - 1) {
+                				roadString += ", ";
+                			}
+                    		else {
+                    			roadString += "]}";
+                    		}
+                		}
+                		
+                		response += roadString;
+                		if (i != roadList.size() - 1) {
+                			response += ",";
+                		}
+            		}
+            	}
+            	
+            	response += "]}";
+                return response;
+            });
+            
+            get("/traffic-signals", (req, res) -> {
+            	String response = "{\"data\":[";
+            	
+            	for (int i = 0; i < trafficSignalList.size(); i++) {
+            		TrafficSignal trafficSignal = trafficSignalList.get(i);
+            		Coordinate coordinate = trafficSignal.getCoordinate();
+            		
+            		String trafficSignalString = "{\"name\": " + "\"" + trafficSignal.getName() + "\"" + 
+            									 ", \"junctionId\": " + trafficSignal.getJunction().getJunctionId() +
+            									 ", \"duration\": " + trafficSignal.getDuration() +
+            									 ", \"sequence\": " + trafficSignal.getSequence() +
+            									 ", \"isActive\": " + trafficSignal.getIsActive() + 
+            									 ", \"xCoordinate\": " + coordinate.getX() + 
+            									 ", \"yCoordinate\": " + coordinate.getY() + "}";
+            		response += trafficSignalString;
+            		
+            		if (i != trafficSignalList.size() - 1) {
+            			response += ", ";
+            		}	
+            	}
+            	
+            	response += "]}";
+            	
+                return response;
+            });
+            
+            post("/traffic-signals-config", (req, res) -> {
+            	String requestBody = req.body();
+            	
+            	// Remove all current traffic signals
+            	for (TrafficSignal trafficSignal : trafficSignalList) {
+            		context.remove(trafficSignal);
+            	}
+            	
+            	// Remove all current junctions
+            	for (Junction junction : junctionList ) {
+            		context.remove(junction);
+            	}
+
+            	trafficSignalList = new ArrayList<>();
+            	junctionList = new ArrayList<>();
+            	
+            	try {
+            	List<String> data = extractJsonList(requestBody, "config");
+            	for (String dataString : data) {
+//            		System.out.println(dataString);
+            		String trafficSignalName = extractJsonValue(dataString, "name");
+//            		String duration = extractJsonValue(dataString, "duration");
+//            		String sequence = extractJsonValue(dataString, "sequence");
+//            		String xCoordinate = extractJsonValue(dataString, "xCoordinate");
+//            		String yCoordinate = extractJsonValue(dataString, "yCoordinate");
+//            		String junctionId = extractJsonValue(dataString, "junctionId");
+//            		boolean isJunctionFound = false;
+            		
+//            		System.out.println(trafficSignalName);
+            		int duration = Integer.parseInt(extractJsonValue(dataString, "duration"));
+            		int sequence = Integer.parseInt(extractJsonValue(dataString, "sequence"));
+            		Double xCoordinate = Double.parseDouble(extractJsonValue(dataString, "xCoordinate"));
+            		Double yCoordinate = Double.parseDouble(extractJsonValue(dataString, "yCoordinate"));
+            		int junctionId = Integer.parseInt(extractJsonValue(dataString, "junctionId"));
+            		boolean isJunctionFound = false;
+            		
+            		TrafficSignal trafficSignal = new TrafficSignal(trafficSignalName, new Coordinate(xCoordinate, yCoordinate), duration, sequence);
+            		
+            		for (Junction currentJunction : junctionList) {
+            			if (currentJunction.getJunctionId() == junctionId) {
+            				isJunctionFound = true;
+            				
+            				trafficSignal.setJunction(currentJunction);
+            				currentJunction.addTrafficSignal(trafficSignal);
+        					context.add(trafficSignal);
+        					geography.move(trafficSignal, factory.createPoint(trafficSignal.getCoordinate()));
+        					trafficSignalList.add(trafficSignal);
+            				
+            				break;
+            			}
+            		}
+            		
+            		if (!isJunctionFound) {
+            			Junction junction = new Junction(junctionId);
+            			junctionList.add(junction);
+            			
+                		trafficSignal.setJunction(junction);
+                		junction.addTrafficSignal(trafficSignal);
+    					context.add(trafficSignal);
+    					geography.move(trafficSignal, factory.createPoint(trafficSignal.getCoordinate()));
+    					trafficSignalList.add(trafficSignal);
+            		}
+            		
+            		boolean isIntersectionFound = false;
+            		for (Intersection intersection : intersectionList) {
+        				
+        				// If traffic signal is on intersection
+        				if (trafficSignal.getCoordinate().equals(intersection.getCoordinate())) {
+        					intersection.addTrafficSignal(trafficSignal);
+        					isIntersectionFound = true;
+        					break;
+        				}
+        			}
+            		
+            		if (!isIntersectionFound) {
+            			boolean isRoadNodeFound = false;
+            			for (Road road : roadList) {
+            				for (RoadNode roadNode : road.getRoadNodeList()) {
+            					if (roadNode.getCoordinate().equals(trafficSignal.getCoordinate())) {
+            						Intersection newIntersection = new Intersection(trafficSignal.getCoordinate(), roadNode);
+            						intersectionList.add(newIntersection);
+            						isRoadNodeFound = true;
+            						break;
+            					}
+            				}
+            				
+            				if (isRoadNodeFound) {
+            					break;
+            				}
+            			}
+            		}
+            	} }
+            	catch (Exception e) {
+            		System.err.println("Error processing request: " + e.getMessage());
+            		e.printStackTrace();
+            		
+            		res.status(500);
+                    res.type("application/json");
+                    return "{\"message\": \"Internal server error\"}";
+            	}
+            	res.status(200);
+            	res.type("application/json");
+            	
+            	return "{\"message\": \"Success\"}";
+            });
+            
+            post("/simulation-start", (req, res) -> {
+            	RunEnvironment.getInstance().resumeRun();
+            	res.status(200);
+                res.type("application/json");
+
+                // Return a response
+                return "{\"message\": \"Simulation start\"}";
+            });
+            
+            post("/simulation-resume", (req, res) -> {
+            	RunEnvironment.getInstance().resumeRun();
+            	res.status(200);
+                res.type("application/json");
+
+                // Return a response
+                return "{\"message\": \"Simulation resumed\"}";
+            });
+            
+            post("/simulation-stop", (req, res) -> {
+            	RunEnvironment.getInstance().pauseRun();
+            	
+            	for (Vehicle vehicle : vehicleList) {
+            		vehicle.setIsRouteCompleted(true);
+            	}
+            	res.status(200);
+                res.type("application/json");
+
+                // Return a response
+                return "{\"message\": \"Simulation stopped\"}";
+            });
+            
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void generateVehicleAgent() {
@@ -112,54 +363,9 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 				end = spawnPointList.get(random.nextIntFromTo(0, spawnPointList.size() - 1));
 			}
 			
-			Vehicle newVehicle = new Vehicle(start, end);
+			Vehicle newVehicle = new Vehicle(start, end, String.valueOf(++vehicleCount));
+			vehicleList.add(newVehicle);
 		}
-		
-//		for (int i = 0; i < vehicleNumGenerator; i++) {
-//			int startRoadId = -1;
-//			int endRoadId = -1;
-//			ArrayList<RoadNode> startRoadNodeList = new ArrayList<>();
-//			ArrayList<RoadNode> endRoadNodeList = new ArrayList<>();
-//			
-//			boolean repeat = false;
-//			do {
-//				repeat = false;
-//				startRoadId = random.nextIntFromTo(0, roadList.size() - 1);
-//				endRoadId = random.nextIntFromTo(0, roadList.size() - 1);
-//				
-//				if (endRoadId == startRoadId) {
-//					endRoadId = random.nextIntFromTo(0, roadList.size() - 1);
-//					repeat = true;
-//				}
-//				
-//				else if (!roadHashMap.containsKey(startRoadId)) {
-//					repeat = true;
-//				}
-//				
-//				else if (!roadHashMap.containsKey(endRoadId)) {
-//					repeat = true;
-//				}
-//				
-//				else {
-////					System.out.println("Start road id: " + startRoadId);
-////					System.out.println("End road id: " + endRoadId);
-//					startRoadNodeList = roadHashMap.get(startRoadId).getRoadNodeList();
-//					endRoadNodeList = roadHashMap.get(endRoadId).getRoadNodeList();
-//				}
-//				
-//			} while (repeat);
-//			
-//			
-//			int startRoadNodeNum = random.nextIntFromTo(0, startRoadNodeList.size() - 1);
-//			int endRoadNodeNum = random.nextIntFromTo(0, endRoadNodeList.size() - 1);
-//			
-//			RoadNode startRoadNode = startRoadNodeList.get(startRoadNodeNum);
-//			RoadNode endRoadNode = endRoadNodeList.get(endRoadNodeNum);
-//
-//			Vehicle newVehicle = new Vehicle(startRoadNode, endRoadNode);
-//			context.add(newVehicle);
-//			geography.move(newVehicle, factory.createPoint(newVehicle.getCurrentCoordinate()));
-//		}
 	}
 	
 	private List<SimpleFeature> loadFeaturesFromShapeFile(String fileName) {
@@ -339,6 +545,7 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 	
 	private void loadTrafficSignalFeatures(String fileName, Network net) {
 		List<SimpleFeature> features = loadFeaturesFromShapeFile(fileName);
+		int count = 0;
 		
 		// For each feature in the file
 		for (SimpleFeature feature : features) {
@@ -354,8 +561,7 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 					geom = (Point)feature.getDefaultGeometry();
 					
 					// Read the feature attributes and assign to Traffic Signal
-					String name = (String)feature.getAttribute("Name");
-					TrafficSignal trafficSignal = new TrafficSignal(name, geom.getCoordinate());
+					TrafficSignal trafficSignal = new TrafficSignal("Traffic Signal " + count++, geom.getCoordinate());
 					context.add(trafficSignal);
 					geography.move(trafficSignal, geom);
 					trafficSignalList.add(trafficSignal);
@@ -367,6 +573,7 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 	}
 	
 	private void linkTrafficSignalsWithIntersection() {
+		int junctionCount = 0;
 		for (TrafficSignal trafficSignal : trafficSignalList) {
 			
 			for (Intersection intersection : intersectionList) {
@@ -412,6 +619,7 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 						
 						if (!junction.contains(iteratorTrafficSignal)) {
 							junction.addTrafficSignal(iteratorTrafficSignal);
+							iteratorTrafficSignal.setSequence(junction.getTrafficSignalList().size() - 1);
 						}
 					}
 					break;
@@ -419,16 +627,118 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 			}
 			
 			if (!hasExistingJunction) {
-				Junction newJunction = new Junction();
+				Junction newJunction = new Junction(junctionCount++);
 				
 				for (TrafficSignal iteratorTrafficSignal : tempTrafficSignalList) {
 					iteratorTrafficSignal.setJunction(newJunction);
 					newJunction.addTrafficSignal(iteratorTrafficSignal);
+					iteratorTrafficSignal.setSequence(newJunction.getTrafficSignalList().size() - 1);
 				}
 				
 				junctionList.add(newJunction);
 			}
 		}
 	}
+	
+	// Helper method to extract value from JSON by key
+    private static String extractJsonValue(String json, String key) {
+        String searchKey = "\"" + key + "\":";
+        int startIndex = json.indexOf(searchKey);
+        if (startIndex == -1) {
+        	System.out.println("search key:" + searchKey);
+        	System.out.println("not found");
+            return null;
+        }
+
+        startIndex += searchKey.length();
+        char firstChar = json.charAt(startIndex);
+        String value;
+
+        if (firstChar == '[') {
+            // Extract array
+            int endIndex = findClosingBracket(json, startIndex, '[', ']');
+            value = json.substring(startIndex, endIndex + 1).trim();
+        } else if (firstChar == '{') {
+            // Extract object
+            int endIndex = findClosingBracket(json, startIndex, '{', '}');
+            value = json.substring(startIndex, endIndex + 1).trim();
+        } else {
+            // Extract primitive value
+            int endIndex = json.indexOf(",", startIndex);
+            if (endIndex == -1) {
+                endIndex = json.indexOf("}", startIndex);
+            }
+            value = json.substring(startIndex, endIndex).trim();
+        }
+
+        // Remove any enclosing quotes from the value
+        if (value.startsWith("\"") && value.endsWith("\"")) {
+            value = value.substring(1, value.length() - 1);
+        }
+
+        return value;
+    }
+
+    // Helper method to extract a list of JSON objects by key
+    private static List<String> extractJsonList(String json, String key) {
+    	System.out.println(json);
+        String searchKey = "\"" + key + "\":";
+        int startIndex = json.indexOf(searchKey);
+        if (startIndex == -1) {
+        	System.out.println("what??");
+            return new ArrayList<>();
+        }
+
+        startIndex += searchKey.length();
+        int endIndex = findClosingBracket(json, startIndex, '[', ']');
+        String arrayString = json.substring(startIndex, endIndex + 1).trim();
+        List<String> items = new ArrayList<>();
+        int arrayStart = arrayString.indexOf('[') + 1;
+        int arrayEnd = arrayString.lastIndexOf(']');
+
+        int i = arrayStart;
+        while (i < arrayEnd) {
+            while (i < arrayEnd && Character.isWhitespace(arrayString.charAt(i))) {
+                i++;
+            }
+
+            char firstChar = arrayString.charAt(i);
+            int itemEndIndex = i;
+
+            if (firstChar == '{') {
+                itemEndIndex = findClosingBracket(arrayString, i, '{', '}');
+                items.add(arrayString.substring(i, itemEndIndex + 1).trim());
+                i = itemEndIndex + 1;
+            }
+            else if (firstChar == '[') {
+                itemEndIndex = findClosingBracket(arrayString, i, '[', ']');
+                items.add(arrayString.substring(i, itemEndIndex + 1).trim());
+                i = itemEndIndex + 1;
+            }
+
+            
+            while (i < arrayEnd && arrayString.charAt(i) == ',') {
+                i++;
+            }
+        }
+
+        return items;
+    }
+
+    // Helper method to find the closing bracket for nested structures
+    private static int findClosingBracket(String json, int startIndex, char openBracket, char closeBracket) {
+        int depth = 1;
+        for (int i = startIndex + 1; i < json.length(); i++) {
+            if (json.charAt(i) == openBracket) {
+                depth++;
+            } else if (json.charAt(i) == closeBracket) {
+                depth--;
+                if (depth == 0) {
+                    return i;
+                }
+            }
+        }
+        return -1;  // If not found, which indicates malformed JSON
+    }
 
 }

@@ -28,6 +28,7 @@ public class Vehicle {
 	private LinkedList<RoadNode> route;
 	private Coordinate currentCoordinate;
 	private double currentTrajectoryAngle;
+	private Junction currentJunction;
 	private GeometryFactory factory = new GeometryFactory();
 	private Context context;
 	private Geography<Vehicle> geography;
@@ -35,6 +36,7 @@ public class Vehicle {
 	private final double maxSpeed = 16.6667;
 	private final double minAcceleration = -4.5;
 	private final double maxAcceleration = 5;
+	private final double minDistance = 0.000001;
 	
 	public Vehicle(RoadNode startingRoadNode, RoadNode destinationNode) {
 		isRouteCompleted = false;
@@ -88,7 +90,6 @@ public class Vehicle {
 		
 		else {
 			isRouteCompleted = true;
-			System.out.println("rip");
 		}
 	}
 	
@@ -102,7 +103,7 @@ public class Vehicle {
 			return;
 		}
 		
-		else if (route.size() == 0) {
+		else if (route.size() == 0 || isRouteCompleted) {
 			context.remove(this);
 			return;
 		}
@@ -118,26 +119,29 @@ public class Vehicle {
 				Intersection intersection = route.getFirst().getIntersection();
 
 				if (intersection.getTrafficSignal() != null && !intersection.getTrafficSignal().getIsActive()) {
-					speed = 0;
-//					System.out.println("traffic signal: red");
-//					System.out.println("traffic signal: ????");
+					Junction junction = intersection.getTrafficSignal().getJunction();
+					if (currentJunction != null && junction.getJunctionId() == currentJunction.getJunctionId()) {
+						accelerate();
+					}
+					else {
+						currentJunction = junction;
+						speed = 0;
+					}
 					return;
 				}
 				
 				else if (intersection.getTrafficSignal() != null && intersection.getTrafficSignal().getIsActive()) {
-//					System.out.println("green whoo");
+					currentJunction = intersection.getTrafficSignal().getJunction();
 					accelerate();
 				}
 				
 				else {
-//					System.out.println("green whoo");
-//					System.out.println("speed: " + speed);
 					accelerate();
 				}
 			}
 			
 			else {
-//				System.out.println("gooo");
+				currentJunction = null;
 				accelerate();
 			}
 		}
@@ -151,17 +155,17 @@ public class Vehicle {
 				return;
 			}
 			
-			else if (distance <= 0.000005) {
+			else if (distance <= minDistance) {
 //				System.out.println("Too close!!");
 				speed = 0;
 				return;
 			}
 			
-			else if (distance <= 0.0001 && speed < 2) {
-				accelerate();
-			}
+//			else if (distance <= 0.0001 && speed < 2) {
+//				accelerate();
+//			}
 			
-			else if (speed >= 3) {
+			else {
 				brake(distance);
 //				System.out.println("Braking! from " + name);
 //				System.out.println("Braking!");
@@ -247,7 +251,13 @@ public class Vehicle {
 	private void brake(double distance) {
 		double alpha = 100;
 		
-		acceleration -= Math.abs(2 * Math.exp(alpha * distance));
+		if (distance > minDistance) {
+			acceleration -= Math.abs(2 * Math.exp(-alpha * (distance - minDistance)));
+		}
+		else {
+			acceleration = minAcceleration;
+		}
+		
 		acceleration = Math.max(acceleration, minAcceleration);
 		speed += acceleration;
 		
@@ -500,6 +510,14 @@ public class Vehicle {
 
 	public Coordinate getCurrentCoordinate() {
 		return currentCoordinate;
+	}
+
+	public boolean isRouteCompleted() {
+		return isRouteCompleted;
+	}
+	
+	public void setIsRouteCompleted(boolean flag) {
+		isRouteCompleted = flag;
 	}
 
 	public RoadNode getCurrentRoadNode() {

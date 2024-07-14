@@ -14,6 +14,13 @@ public class Intersection {
 	private ArrayList<RoadNode> connectedRoadNodeList;
 	private TrafficSignal trafficSignal;
 	
+	public Intersection(Coordinate coordinate, RoadNode roadNode1) {
+		this.trafficSignal = null;
+		this.coordinate = coordinate;
+		connectedRoadNodeList = new ArrayList<RoadNode>();
+		connectedRoadNodeList.add(roadNode1);
+	}
+	
 	public Intersection(Coordinate coordinate, RoadNode roadNode1, RoadNode roadNode2) {
 		this.trafficSignal = null;
 		this.coordinate = coordinate;

@@ -6,18 +6,24 @@ import repast.simphony.engine.schedule.ScheduleParameters;
 import repast.simphony.engine.schedule.ScheduledMethod;
 
 public class Junction {
+	private int junctionId;
 	private ArrayList<TrafficSignal> trafficSignalList;
 	private int currentActiveTrafficSignalIndex;
 	private boolean isActive;
 	private int currentTickCount;
 	private int currentTrafficSignalTickDuration;
 	
-	public Junction() {
+	public Junction(int junctionId) {
+		this.junctionId = junctionId;
 		trafficSignalList = new ArrayList<>();
 		isActive = false;
 		currentTickCount = 0;
 		currentActiveTrafficSignalIndex = 0;
 		TrafficFlowSimulationBuilder.context.add(this);
+	}
+	
+	public int getJunctionId() {
+		return junctionId;
 	}
 	
 	@ScheduledMethod(start = 1, interval = 1)
@@ -61,20 +67,9 @@ public class Junction {
 		return trafficSignalList.get(currentActiveTrafficSignalIndex);
 	}
 	
-//	public void changeActiveToNextTrafficSignal() {
-//		if (currentActiveTrafficSignalIndex >= trafficSignalList.size() - 1) {
-//			currentActiveTrafficSignalIndex = 0;
-//			return;
-//		}
-//		
-//		else {
-//			currentActiveTrafficSignalIndex++;
-//		}
-//		
-//		TrafficSignal trafficSignal = trafficSignalList.get(currentActiveTrafficSignalIndex);
-//		trafficSignal.startTrafficSignalTimer();
-//		System.out.println("changing light");
-//	}
+	public ArrayList<TrafficSignal> getTrafficSignalList() {
+		return trafficSignalList;
+	}
 	
 	public boolean contains (TrafficSignal checkTrafficSignal) {
 		for (TrafficSignal trafficSignal : trafficSignalList) {

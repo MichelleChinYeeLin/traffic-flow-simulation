@@ -16,13 +16,20 @@ public class TrafficSignal {
 	private Timer timer;
 	private TimerTask timerTask;
 	private Junction junction;
-	private int trafficSignalIndex;
+	private int sequence;
 	
 	public TrafficSignal(String name, Coordinate coordinate) {
 		this.name = name;
 		this.coordinate = coordinate;
 		duration = 30;
 		isActive = false;
+	}
+	
+	public TrafficSignal(String name, Coordinate coordinate, int duration, int sequence) {
+		this.name = name;
+		this.coordinate = coordinate;
+		this.duration = duration;
+		this.sequence = sequence;
 	}
 
 	public String getName() {
@@ -61,7 +68,15 @@ public class TrafficSignal {
 		return duration;
 	}
 	
-	public void setTrafficSignalIndex(int index) {
-		this.trafficSignalIndex = index;
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+	
+	public int getSequence() {
+		return sequence;
+	}
+	
+	public void setSequence(int index) {
+		this.sequence = index;
 	}
 }
