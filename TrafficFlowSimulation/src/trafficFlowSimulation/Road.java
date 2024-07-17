@@ -11,12 +11,11 @@ public class Road {
 	private boolean isOneWay;
 	private int laneNum;
 	
-	public Road(int roadId, String name, ArrayList<RoadNode> roadNodeList, boolean isOneWay, int laneNum) {
+	public Road(int roadId, String name, ArrayList<RoadNode> roadNodeList, boolean isOneWay) {
 		this.roadId = roadId;
 		this.name = name;
 		this.roadNodeList = roadNodeList;
 		this.isOneWay = isOneWay;
-		this.laneNum = laneNum;
 	}
 	
 	public int getRoadId() {
@@ -35,7 +34,7 @@ public class Road {
 		return roadNodeList;
 	}
 	
-	public boolean isOneWay() {
+	public boolean isOneWay() {	
 		return isOneWay;
 	}
 

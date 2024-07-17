@@ -45,9 +45,51 @@ public class SimulationController {
 		}
 	}
 	
+	@PostMapping("/roads-config")
+	public ResponseEntity<String> setRoadConfig(@RequestBody String requestBody) {
+		try {
+			String response = simulationService.setRoadConfig(requestBody);
+			return ResponseEntity.ok(response);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
+		}
+	}
+	
+	@PostMapping("/simulation-speed")
+	public ResponseEntity<String> setSimulationSpeed(@RequestBody String requestBody) {
+		try {
+			String response = simulationService.setSimulationSpeed(requestBody);
+			return ResponseEntity.ok(response);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
+		}
+	}
+	
+	@PostMapping("/vehicle-in-flow")
+	public ResponseEntity<String> setVehicleInFlow(@RequestBody String requestBody) {
+		try {
+			String response = simulationService.setVehicleInFlow(requestBody);
+			return ResponseEntity.ok(response);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
+		}
+	}
+	
 	@PostMapping("/simulation-start")
 	public ResponseEntity<String> setSimulationStart() {
 		String response = simulationService.setSimulationStart();
+		return ResponseEntity.ok(response);
+	}
+	
+	@PostMapping("/simulation-resume")
+	public ResponseEntity<String> setSimulationResume() {
+		String response = simulationService.setSimulationResume();
+		return ResponseEntity.ok(response);
+	}
+	
+	@PostMapping("/simulation-pause")
+	public ResponseEntity<String> setSimulationPause() {
+		String response = simulationService.setSimulationPause();
 		return ResponseEntity.ok(response);
 	}
 	

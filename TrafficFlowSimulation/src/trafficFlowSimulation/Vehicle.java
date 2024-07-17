@@ -41,6 +41,7 @@ public class Vehicle {
 	public Vehicle(RoadNode startingRoadNode, RoadNode destinationNode) {
 		isRouteCompleted = false;
 		currentCoordinate = startingRoadNode.getCoordinate();
+		System.out.println("new vehicle");
 		calculateRoute(startingRoadNode, destinationNode);
 		
 		if (route != null) {
@@ -61,6 +62,7 @@ public class Vehicle {
 		}
 		
 		else {
+			System.out.println("null route");
 			isRouteCompleted = true;
 		}
 	}
@@ -70,7 +72,7 @@ public class Vehicle {
 		isRouteCompleted = false;
 		currentCoordinate = startingRoadNode.getCoordinate();
 		calculateRoute(startingRoadNode, destinationNode);
-		
+
 		if (route != null) {
 			route.removeFirst();
 			
@@ -118,7 +120,13 @@ public class Vehicle {
 			if (route.getFirst().getIntersection() != null) {
 				Intersection intersection = route.getFirst().getIntersection();
 
-				if (intersection.getTrafficSignal() != null && !intersection.getTrafficSignal().getIsActive()) {
+				if (intersection.getTrafficSignal() != null && intersection.getTrafficSignal().getIsActive()) {
+					currentJunction = intersection.getTrafficSignal().getJunction();
+					accelerate();
+				}
+				
+				else if (intersection.getTrafficSignal() != null && !intersection.getTrafficSignal().getIsActive()) {
+//					speed = 0;
 					Junction junction = intersection.getTrafficSignal().getJunction();
 					if (currentJunction != null && junction.getJunctionId() == currentJunction.getJunctionId()) {
 						accelerate();
@@ -126,13 +134,8 @@ public class Vehicle {
 					else {
 						currentJunction = junction;
 						speed = 0;
+						return;
 					}
-					return;
-				}
-				
-				else if (intersection.getTrafficSignal() != null && intersection.getTrafficSignal().getIsActive()) {
-					currentJunction = intersection.getTrafficSignal().getJunction();
-					accelerate();
 				}
 				
 				else {
@@ -173,7 +176,7 @@ public class Vehicle {
 		}
 		
 		// Calculate new coordinates based on current speed
-		double coordinateDistance = speed * 0.000001;
+		double coordinateDistance = speed * 0.00001;
 		double firstNodeDistance = currentCoordinate.distance(route.getFirst().getCoordinate());
 		Coordinate newCoordinate = new Coordinate();
 		currentTrajectoryAngle = calculateAngleBetweenPoints(currentCoordinate, route.getFirst().getCoordinate());
@@ -317,7 +320,7 @@ public class Vehicle {
 	}
 	
 	private Vehicle getClosestVehicle() {
-		double totalDistance = 0.0001;
+		double totalDistance = 0.001;
 		
 		if (totalDistance > currentCoordinate.distance(route.getFirst().getCoordinate())) {
 			totalDistance -= currentCoordinate.distance(route.getFirst().getCoordinate());

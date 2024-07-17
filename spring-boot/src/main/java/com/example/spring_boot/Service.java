@@ -20,8 +20,38 @@ public class Service {
 		return restTemplate.postForObject(endPoint, requestBody, String.class);
 	}
 	
+	public String setRoadConfig(String requestBody) {
+		String endPoint = url + "/roads-config";
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate.postForObject(endPoint, requestBody, String.class);
+	}
+	
+	public String setSimulationSpeed(String requestBody) {
+		String endPoint = url + "/simulation-speed";
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate.postForObject(endPoint, requestBody, String.class);
+	}
+	
+	public String setVehicleInFlow(String requestBody) {
+		String endPoint = url + "/vehicle-in-flow";
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate.postForObject(endPoint, requestBody, String.class);
+	}
+	
 	public String setSimulationStart() {
 		String endPoint = url + "/simulation-start";
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate.postForObject(endPoint, null, String.class);
+	}
+	
+	public String setSimulationResume() {
+		String endPoint = url + "/simulation-resume";
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate.postForObject(endPoint, null, String.class);
+	}
+	
+	public String setSimulationPause() {
+		String endPoint = url + "/simulation-pause";
 		RestTemplate restTemplate = new RestTemplate();
 		return restTemplate.postForObject(endPoint, null, String.class);
 	}

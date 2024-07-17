@@ -64,6 +64,16 @@ public class Intersection {
 		connectedRoadNodeList.add(roadNode);
 	}
 	
+	public boolean containsRoadNode(RoadNode roadNode) {
+		for (RoadNode node : connectedRoadNodeList) {
+			if (node.equals(roadNode)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	public void addTrafficSignal(TrafficSignal trafficSignal) {
 		this.trafficSignal = trafficSignal;
 	}
