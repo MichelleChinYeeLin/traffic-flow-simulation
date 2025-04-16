@@ -69,10 +69,10 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 	
 	private List<Road> roadList = new ArrayList<Road>();
 	private List<Intersection> intersectionList = new ArrayList<Intersection>();
+	public static List<Vehicle> vehicleList = new ArrayList<>();
 	public static List<TrafficSignal> trafficSignalList = new ArrayList<TrafficSignal>();
 	private List<Junction> junctionList = new ArrayList<Junction>();
 	private List<RoadNode> spawnPointList = new ArrayList<>();
-	public static List<Vehicle> vehicleList = new ArrayList<>();
 	private RoadNode test1 = null;
 	private RoadNode test1a = null;
 	private RoadNode test2 = null;
@@ -81,52 +81,39 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 	private int vehicleCount = 0;
 	private boolean isFirstInitialization = true;
 	
+	private List<Road> initialRoadList = new ArrayList<Road>();
+	private List<TrafficSignal> initialTrafficSignalList = new ArrayList<>();
+	
 	public static Context context;
 	public static Geography geography;
 	public static GeometryFactory factory;
 	
 	// Test
-	public static Network net2 = null;
 	public static Network roadNetwork = null;
 	
 	@Override
 	public Context build(Context context) {
+		// Create environment for simulation
 		this.context = context;
 		GeographyParameters<Object> params = new GeographyParameters<Object>();
-		this.geography = GeographyFactoryFinder.createGeographyFactory(null).createGeography("TrafficFlowMap", context, params);
+		this.geography = GeographyFactoryFinder.createGeographyFactory(null).
+				createGeography("TrafficFlowMap", context, params);
 		this.factory = new GeometryFactory();
 		
 		NetworkBuilder<?> netBuilder = new NetworkBuilder<Object>("Network", context, true);
 		roadNetwork = netBuilder.buildNetwork();
-		NetworkBuilder<?> net2Builder = new NetworkBuilder<Object>("Test Network", context, true);
-		net2 = net2Builder.buildNetwork();
 		
 		// Load features from shapefiles
 		loadRoadFeatures("./data/roads-line.shp", roadNetwork);
-		loadTrafficSignalFeatures("./data/amenity_points-point.shp", roadNetwork);
+		loadTrafficSignalFeatures("./data/amenity_points-point.shp");
 		
 		generateVehicleSpawnPointList();
 		generateVehicleAgentFirstInitialization();
 		
+		// Create interval to generate vehicles
 		Schedule vehicleGeneratorSchedule = (Schedule) RunEnvironment.getInstance().getCurrentSchedule();
 		ScheduleParameters rneScheduleParameters = ScheduleParameters.createRepeating(1, 60);
 		vehicleGeneratorSchedule.schedule(rneScheduleParameters, this, "generateVehicleAgent");
-		
-//		for (Road road : roadList) {
-//			for (RoadNode roadNode : road.getRoadNodeList()) {
-//				if (roadNode.getCoordinate().equals(testCoordinate)) {
-//					System.out.println(road.getRoadId() + " : " + roadNode.getIntersection().getConnectedRoadNodeList().size());
-//					
-//					for (RoadNode testRoadNode : roadNode.getIntersection().getConnectedRoadNodeList()) {
-//						System.out.println(testRoadNode.getRoadId());
-//					}
-//				}
-//			}
-//		}
-		
-//		for (Intersection intersection : intersectionList) {
-//			System.out.println("Intersection coordinates: (" + intersection.getCoordinate().getX() + ", " + intersection.getCoordinate().getY() + ") | " + intersection.getConnectedRoadNodeList().size());
-//		}
 		
 		if (isFirstInitialization) {
 			initializeEndpoints();
@@ -136,42 +123,14 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 		return context;
 	}
 	
-//	public void initializeSimulation() {
-//		Context<Object> newContext = new DefaultContext<>("MySimulation");
-//		build(newContext);
-//	}
-	
 	public void initializeEndpoints() {
 		try {
             port(4567);
 
             TrafficFlowSimulation simulation = new TrafficFlowSimulation();
             context.add(simulation);
-//            simulation.run();
 
-            get("/vehicles", (req, res) -> {
-//            	String response = "{\"data\":[";
-//            	ArrayList<Vehicle> nextVehicleList = TrafficFlowSimulation.getFirstVehicleList();
-//            	boolean isFirst = true;
-//            	
-//            	for (int i = 0; i < nextVehicleList.size(); i++) {
-//            		Vehicle vehicle = nextVehicleList.get(i);
-//            		
-//            		if (!vehicle.isRouteCompleted()) {
-//            			if (isFirst) {
-//            				isFirst = false;
-//            			}
-//            			else {
-//            				response += ", ";
-//            			}
-//            			Coordinate vehicleCoordinate = vehicle.getCurrentCoordinate();
-//                		String vehicleString = "{\"name\": " + vehicle.getName() + ", \"xCoordinate\": " + vehicleCoordinate.getX() + ", \"yCoordinate\": " + vehicleCoordinate.getY() + "}";
-//                		response += vehicleString;
-//            		}
-//            	}
-//            	
-//            	response += "]}";
-            	
+            get("/vehicles", (req, res) -> {            	
                 return TrafficFlowSimulation.getFirstVehicleList();
             });
             
@@ -207,31 +166,70 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
                 return response;
             });
             
-            get("/traffic-signals", (req, res) -> {
-//            	String response = "{\"data\":[";
-//            	ArrayList<TrafficSignal> nextTrafficSignalList = TrafficFlowSimulation.getFirstTrafficSignalList();
-//            	
-//            	for (int i = 0; i < nextTrafficSignalList.size(); i++) {
-//            		TrafficSignal trafficSignal = nextTrafficSignalList.get(i);
-//            		Coordinate coordinate = trafficSignal.getCoordinate();
-//            		
-//            		String trafficSignalString = "{\"name\": " + "\"" + trafficSignal.getName() + "\"" + 
-//            									 ", \"junctionId\": " + trafficSignal.getJunction().getJunctionId() +
-//            									 ", \"duration\": " + trafficSignal.getDuration() +
-//            									 ", \"sequence\": " + trafficSignal.getSequence() +
-//            									 ", \"isActive\": " + trafficSignal.getIsActive() + 
-//            									 ", \"xCoordinate\": " + coordinate.getX() + 
-//            									 ", \"yCoordinate\": " + coordinate.getY() + "}";
-//            		response += trafficSignalString;
-//            		
-//            		if (i != trafficSignalList.size() - 1) {
-//            			response += ", ";
-//            		}	
-//            	}
-//            	
-//            	response += "]}";
+            get("/roads-reset", (req, res) -> {
+            	String response = "{\"data\":[";
             	
+            	for (int i = 0; i < initialRoadList.size(); i++) {
+            		Road road = initialRoadList.get(i);
+            		
+            		if (road != null) {
+            			String roadString = "{\"id\": " + road.getRoadId() + ", \"name\": \"" + road.getName() + "\", \"isOneWay\": " + road.isOneWay() + ", \"node\":[";
+                		for (int j = 0; j < road.getRoadNodeList().size(); j++) {
+                			RoadNode node = road.getRoadNodeList().get(j);
+                			Coordinate nodeCoordinate = node.getCoordinate();
+                			roadString += "{\"roadNodeId\": " + j + ", \"xCoordinate\": " + nodeCoordinate.getX() + ", \"yCoordinate\": " + nodeCoordinate.getY() + "}";
+                			
+                			if (j < road.getRoadNodeList().size() - 1) {
+                				roadString += ", ";
+                			}
+                    		else {
+                    			roadString += "]}";
+                    		}
+                		}
+                		
+                		response += roadString;
+                		if (i != initialRoadList.size() - 1) {
+                			response += ",";
+                		}
+            		}
+            	}
+            	
+            	response += "]}";
+                return response;
+            });
+            
+            get("/traffic-signals", (req, res) -> {            	
                 return TrafficFlowSimulation.getFirstTrafficSignalList();
+            });
+            
+            get("/traffic-signals-init", (req, res) -> {
+            	return TrafficFlowSimulation.getCurrentTrafficSignalList();
+            });
+            
+            get("/traffic-signals-reset", (req, res) -> {
+            	String response = "{\"data\":[";
+            	
+            	for (int i = 0; i < initialTrafficSignalList.size(); i++) {
+            		TrafficSignal trafficSignal = initialTrafficSignalList.get(i);
+            		Coordinate coordinate = trafficSignal.getCoordinate();
+            		
+            		String trafficSignalString = "{\"name\": " + "\"" + trafficSignal.getName() + "\"" + 
+            									 ", \"junctionId\": " + trafficSignal.getJunction().getJunctionId() +
+            									 ", \"duration\": " + trafficSignal.getDuration() +
+            									 ", \"sequence\": " + trafficSignal.getSequence() +
+            									 ", \"isActive\": " + trafficSignal.getIsActive() + 
+            									 ", \"xCoordinate\": " + coordinate.getX() + 
+            									 ", \"yCoordinate\": " + coordinate.getY() + "}";
+            		response += trafficSignalString;
+            		
+            		if (i != trafficSignalList.size() - 1) {
+            			response += ", ";
+            		}	
+            	}
+            	
+            	response += "]}";
+            	
+                return response;
             });
             
             post("/traffic-signals-config", (req, res) -> {
@@ -349,10 +347,7 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
             			context.remove(roadNode);
             		}
             	}
-            	
-//            	roadList = new ArrayList<>();
-//            	roadHashMap = new HashMap<>();
-//            	intersectionList = new ArrayList<>();
+
             	roadList.clear();
             	roadHashMap.clear();
             	intersectionList.clear();
@@ -402,54 +397,10 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
             	spawnPointList = new ArrayList<>();
             	generateVehicleSpawnPointList();
             	
-            	
-//            	System.out.println("Intersection list size: " + intersectionList.size());
-            	
-//        		for (Intersection intersection : intersectionList) {
-//        			System.out.println("Intersection coordinates: (" + intersection.getCoordinate().getX() + ", " + intersection.getCoordinate().getY() + ") | " + intersection.getConnectedRoadNodeList().size());
-//        		}
-            	
-            	// Log final state
-//                System.out.println("Final state:");
-//                System.out.println("hash map: " + roadHashMap.size());
-//                System.out.println("road list: " + roadList.size());
-//                System.out.println("intersection list: " + intersectionList.size());
-            	
             	res.status(200);
             	res.type("application/json");
             	
-            	
-            	            	
-//            	for (Road road : roadList) {
-//        			for (RoadNode roadNode : road.getRoadNodeList()) {
-//        				if (roadNode.getCoordinate().equals(testCoordinate)) {
-//        					System.out.println(road.getRoadId() + " : " + roadNode.getIntersection().getConnectedRoadNodeList().size());
-//        				}
-//        			}
-//        		}
-            	
-//            	for (Road road : testRoadList) {
-//            		System.out.println("Road " + road.getRoadId() + ": " + road.getRoadNodeList().size());
-//            	}
-            	
-//            	String testString = "{\"data\": [";
-//            	
-//            	for (Intersection intersection : intersectionList) {
-//            		testString += "{\"coordinate\": (" + intersection.getCoordinate().getX() + ", " + intersection.getCoordinate().getY() + "), \"node\": [";
-//            		
-//            		ArrayList<RoadNode> roadNodeList = intersection.getConnectedRoadNodeList();
-//            		
-//            		for (RoadNode roadNode : roadNodeList) {
-//            			testString += "{" + roadNode.getRoadId() + " | " + roadNode.getCoordinate().getX() + " | " + roadNode.getCoordinate().getY() + "}, ";
-//            		}
-//            		
-//            		testString += "]}";
-//            	}
-//            	
-//            	testString += "]}";
-            	
             	// Return a response
-//            	return testString;
             	return "{\"message\": \"Success\"}";
             });
             
@@ -458,7 +409,7 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
             	
             	int speed = Integer.parseInt(extractJsonValue(requestBody, "speed"));
             	TrafficFlowSimulation.tickToSecondRepresentation = speed;
-            	System.out.println("speed: " + speed);
+
             	res.status(200);
             	res.type("application/json");
             	return "{\"message\": \"Success\"}";
@@ -469,7 +420,7 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
             	
             	int vehicleInFlow = Integer.parseInt(extractJsonValue(requestBody, "vehicleInFlow"));
             	vehicleNumGenerator = vehicleInFlow;
-            	System.out.println("Vehicle in flow: " + vehicleInFlow);
+
             	res.status(200);
             	res.type("application/json");
             	return "{\"message\": \"Success\"}";
@@ -482,9 +433,7 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
             		ScheduleParameters rneScheduleParameters = ScheduleParameters.createRepeating(1, 60);
             		vehicleGeneratorSchedule.schedule(rneScheduleParameters, this, "generateVehicleAgent");
             	}
-//            	else {
-//            		System.out.println("no schedule");
-//            	}
+
             	generateVehicleAgentFirstInitialization();
         		TrafficFlowSimulation.isFirstTick = true;
             	RunEnvironment.getInstance().resumeRun();
@@ -519,6 +468,8 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
             	for (Vehicle vehicle : vehicleList) {
             		vehicle.setIsRouteCompleted(true);
             	}
+            	
+            	vehicleList.clear();
             	TrafficFlowSimulation.clearVehicleListQueue();
             	TrafficFlowSimulation.clearTrafficSignalListQueue();
             	
@@ -610,21 +561,20 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 		for (SimpleFeature feature : features) {
 			Geometry geom = (Geometry)feature.getDefaultGeometry();
 			
-			if (!geom.isValid()) {
-				System.out.println("Invalid geometry: " + feature.getID());
-			}
-			
-			else if (geom instanceof MultiLineString) {
-				if (!(((String)feature.getAttribute("highway")).equals("footway") || ((String)feature.getAttribute("highway")).equals("steps"))) {
+			if (geom.isValid() && geom instanceof MultiLineString) {
+				if (!(((String)feature.getAttribute("highway")).equals("footway") || 
+					((String)feature.getAttribute("highway")).equals("steps"))) {
 					MultiLineString multiLine = (MultiLineString)feature.getDefaultGeometry();
 					
 					for (int i = 0; i < multiLine.getNumGeometries(); i++) {
 						LineString line = (LineString)multiLine.getGeometryN(i);
 						Coordinate[] coordinates = line.getCoordinates();
 						ArrayList<RoadNode> roadNodeList = new ArrayList<RoadNode>();
+						ArrayList<RoadNode> initialRoadNodeList = new ArrayList<RoadNode>();
 						
 						for (int j = 0; j < coordinates.length; j++) {
 							RoadNode node1 = new RoadNode(roadId, coordinates[j]);
+							RoadNode initialNode1 = new RoadNode(roadId, coordinates[j]);
 							Point point = factory.createPoint(coordinates[j]);
 							
 							// Add the RoadNode to the geometry map
@@ -638,23 +588,7 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 							}
 							
 							roadNodeList.add(node1);
-							
-							/* Testing A star search algo */
-							if (((String)feature.getAttribute("name")).equals("Jalan Inovasi 2") && j == 0) {
-								test1 = node1;
-							}
-							
-//							if (((String)feature.getAttribute("service")).equals("parking_aisle") && j == 4) {
-//								test1 = node1;
-//							}
-							
-							if (((String)feature.getAttribute("name")).equals("Jalan Merah Caga") && j == 2) {
-								test1a = node1;
-							}
-							
-							if (((String)feature.getAttribute("name")).equals("Jalan SR 8/13") && j == 1) {
-								test2 = node1;
-							}
+							initialRoadNodeList.add(initialNode1);
 						}
 						
 						// Read the feature attributes and assign to Road
@@ -664,14 +598,12 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 						}
 						boolean isOneWay = feature.getAttribute("oneway").equals("yes") ? true : false;
 						isOneWay = feature.getAttribute("junction").equals("roundabout") ? true : isOneWay;
-//						int laneNum = feature.getAttribute("lanes") != "" ? Integer.valueOf((String)feature.getAttribute("lanes")) : 0;
 
-//						if (isOneWay) {
-//							System.out.println("is one way");
-//						}
 						Road road = new Road(roadId, name, roadNodeList, isOneWay);
+						Road initialRoad = new Road(roadId, name, initialRoadNodeList, isOneWay);
 						roadList.add(road);
-						roadHashMap.put(roadId, road);
+						initialRoadList.add(initialRoad)
+;						roadHashMap.put(roadId, road);
 					}
 					roadId++;
 				}
@@ -733,18 +665,6 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 		                        	otherRoadNode.setIntersection(intersection);
 		                        }
 	                        }
-//	                        else {
-//	                            // Add road nodes to the existing intersection
-//	                            intersection.addRoadNode(roadNode);
-//	                            intersection.addRoadNode(otherRoadNode);
-//	                        }
-//
-//	                        // Set intersection for the road nodes
-//	                        roadNode.setIntersection(intersection);
-//	                        otherRoadNode.setIntersection(intersection);
-
-	                        // Add edge to the network
-//	                        net.addEdge(roadNode, otherRoadNode);
 	                    }
 	                }
 	            }
@@ -767,7 +687,7 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 		}
 	}
 	
-	private void loadTrafficSignalFeatures(String fileName, Network net) {
+	private void loadTrafficSignalFeatures(String fileName) {
 		List<SimpleFeature> features = loadFeaturesFromShapeFile(fileName);
 		int count = 0;
 		
@@ -775,25 +695,31 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 		for (SimpleFeature feature : features) {
 			Geometry geom = (Geometry)feature.getDefaultGeometry();
 			
-			if (!geom.isValid()) {
-				System.out.println("Invalid geometry: " + feature.getID());
-			}
-			
 			// For Points, create Traffic Light agents
-			if (geom instanceof Point) {
-				if (((String)feature.getAttribute("highway")).equals("traffic_signals") && !((String)feature.getAttribute("crossing")).equals("traffic_signals")) {
+			if (geom.isValid() && geom instanceof Point) {
+				if (((String)feature.getAttribute("highway")).equals("traffic_signals") && 
+					!((String)feature.getAttribute("crossing")).equals("traffic_signals")) {
 					geom = (Point)feature.getDefaultGeometry();
 					
 					// Read the feature attributes and assign to Traffic Signal
-					TrafficSignal trafficSignal = new TrafficSignal("Traffic Signal " + count++, geom.getCoordinate());
+					TrafficSignal trafficSignal = new TrafficSignal("Traffic Signal " + count, geom.getCoordinate());
 					context.add(trafficSignal);
 					geography.move(trafficSignal, geom);
 					trafficSignalList.add(trafficSignal);
+					
+					count++;
 				}
 			}
 		}
 		
 		linkTrafficSignalsWithIntersection();
+		
+		// Setup initial traffic signal list
+		for (TrafficSignal trafficSignal : trafficSignalList) {
+			TrafficSignal initialTrafficSignal = new TrafficSignal(trafficSignal.getName(), trafficSignal.getCoordinate(), trafficSignal.getDuration(), trafficSignal.getSequence());
+			initialTrafficSignal.setJunction(trafficSignal.getJunction());
+			initialTrafficSignalList.add(initialTrafficSignal);
+		}
 	}
 	
 	private void linkTrafficSignalsWithIntersection() {
@@ -813,9 +739,11 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
 				continue;
 			}
 			
-			// Check for nearby traffic signals in 200m 
-			Coordinate coordinate1 = new Coordinate(trafficSignal.getCoordinate().getX() - 0.0002, trafficSignal.getCoordinate().getY() - 0.0002);
-			Coordinate coordinate2 = new Coordinate(trafficSignal.getCoordinate().getX() + 0.0002, trafficSignal.getCoordinate().getY() + 0.0002);
+			// Check for nearby traffic signals in 20m 
+			Coordinate coordinate1 = new Coordinate(trafficSignal.getCoordinate().getX() - 0.0002, 
+													trafficSignal.getCoordinate().getY() - 0.0002);
+			Coordinate coordinate2 = new Coordinate(trafficSignal.getCoordinate().getX() + 0.0002, 
+													trafficSignal.getCoordinate().getY() + 0.0002);
 			Envelope envelope = new Envelope(coordinate1, coordinate2);
 			Iterator<TrafficSignal> iterator = geography.getObjectsWithin(envelope, TrafficSignal.class).iterator();
 			
@@ -869,8 +797,6 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
         String searchKey = "\"" + key + "\":";
         int startIndex = json.indexOf(searchKey);
         if (startIndex == -1) {
-        	System.out.println("search key:" + searchKey);
-        	System.out.println("not found");
             return null;
         }
 
@@ -908,7 +834,6 @@ public class TrafficFlowSimulationBuilder implements ContextBuilder {
         String searchKey = "\"" + key + "\":";
         int startIndex = json.indexOf(searchKey);
         if (startIndex == -1) {
-        	System.out.println("what??");
             return new ArrayList<>();
         }
 

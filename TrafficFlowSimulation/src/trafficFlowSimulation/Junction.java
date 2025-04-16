@@ -32,7 +32,9 @@ public class Junction {
 			return;
 		}
 		
+		// If no traffic signals are active
 		if (!isActive) {
+			// Activate the next traffic signal in the sequence
 			TrafficSignal trafficSignal = trafficSignalList.get(currentActiveTrafficSignalIndex);
 			currentTrafficSignalTickDuration = trafficSignal.getDuration();
 			currentTickCount = 0;
@@ -40,8 +42,10 @@ public class Junction {
 			isActive = true;
 		}
 		else {
+			// Track the duration the current traffic signal has been active
 			currentTickCount++;
 			
+			// If the active traffic signal's duration is reached, deactivate it
 			if (currentTickCount >= currentTrafficSignalTickDuration) {
 				isActive = false;
 				trafficSignalList.get(currentActiveTrafficSignalIndex).setIsActive(false);
@@ -52,7 +56,6 @@ public class Junction {
 				}
 			}
 		}
-//		trafficSignal.startTrafficSignalTimer();
 	}
 	
 	public void addTrafficSignal(TrafficSignal trafficSignal) {

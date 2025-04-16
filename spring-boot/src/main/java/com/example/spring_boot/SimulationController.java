@@ -35,6 +35,21 @@ public class SimulationController {
 		return simulationService.getSimulationData("/traffic-signals");
 	}
 	
+	@GetMapping("/traffic-signals-init")
+	public String getTrafficSignalsInitData() {
+		return simulationService.getSimulationData("/traffic-signals-init");
+	}
+	
+	@GetMapping("/roads-reset")
+	public String getRoadResetData() {
+		return simulationService.getSimulationData("/roads-reset");
+	}
+	
+	@GetMapping("/traffic-signals-reset")
+	public String getTrafficSignalsResetData() {
+		return simulationService.getSimulationData("/traffic-signals-reset");
+	}
+	
 	@PostMapping("/traffic-signals-config")
 	public ResponseEntity<String> setTrafficSignalConfig(@RequestBody String requestBody) {
 		try {

@@ -1,20 +1,12 @@
 package trafficFlowSimulation;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import org.locationtech.jts.geom.Coordinate;
-
-import repast.simphony.engine.watcher.Watch;
-import repast.simphony.engine.watcher.WatcherTriggerSchedule;
 
 public class TrafficSignal {
 	private String name;
 	private Coordinate coordinate;
 	private int duration;
 	private boolean isActive;
-	private Timer timer;
-	private TimerTask timerTask;
 	private Junction junction;
 	private int sequence;
 	
@@ -30,6 +22,7 @@ public class TrafficSignal {
 		this.coordinate = coordinate;
 		this.duration = duration;
 		this.sequence = sequence;
+		isActive = false;
 	}
 
 	public String getName() {

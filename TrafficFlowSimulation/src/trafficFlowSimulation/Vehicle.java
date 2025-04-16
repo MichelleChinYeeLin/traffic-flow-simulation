@@ -28,20 +28,19 @@ public class Vehicle {
 	private LinkedList<RoadNode> route;
 	private Coordinate currentCoordinate;
 	private double currentTrajectoryAngle;
-	private Junction currentJunction;
+	private Junction currentJunction = null;
 	private GeometryFactory factory = new GeometryFactory();
 	private Context context;
 	private Geography<Vehicle> geography;
 	
 	private final double maxSpeed = 16.6667;
 	private final double minAcceleration = -4.5;
-	private final double maxAcceleration = 5;
+	private final double maxAcceleration = 3.25;
 	private final double minDistance = 0.000001;
 	
 	public Vehicle(RoadNode startingRoadNode, RoadNode destinationNode) {
 		isRouteCompleted = false;
 		currentCoordinate = startingRoadNode.getCoordinate();
-		System.out.println("new vehicle");
 		calculateRoute(startingRoadNode, destinationNode);
 		
 		if (route != null) {
@@ -57,12 +56,10 @@ public class Vehicle {
 				
 				// Get angle of movement from current position to next RoadNode
 				currentTrajectoryAngle = calculateAngleBetweenPoints(currentCoordinate, route.getFirst().getCoordinate());
-//				System.out.println("Init current coordinate: " + currentCoordinate);
 			}	
 		}
 		
 		else {
-			System.out.println("null route");
 			isRouteCompleted = true;
 		}
 	}
@@ -86,7 +83,6 @@ public class Vehicle {
 				
 				// Get angle of movement from current position to next RoadNode
 				currentTrajectoryAngle = calculateAngleBetweenPoints(currentCoordinate, route.getFirst().getCoordinate());
-//				System.out.println("Init current coordinate: " + currentCoordinate);
 			}	
 		}
 		
@@ -100,12 +96,7 @@ public class Vehicle {
 		context = ContextUtils.getContext(this);
 		geography = (Geography)context.getProjection("TrafficFlowMap");
 		
-		if (route == null) {
-			context.remove(this);
-			return;
-		}
-		
-		else if (route.size() == 0 || isRouteCompleted) {
+		if (route == null || route.size() == 0 || isRouteCompleted) {
 			context.remove(this);
 			return;
 		}
@@ -116,73 +107,46 @@ public class Vehicle {
 		frontVehicle = getClosestVehicle();
 		
 		if (frontVehicle == null) {
-			// If RoadNode is an intersection, check traffic lights
+			checkIntersection();
+		}
+		else {
+			double distanceFromVehicle = frontVehicle.getCurrentCoordinate().distance(currentCoordinate);
+			
+			boolean checkFrontVehicleDistance = true;
+			
+			// If vehicle is heading to an intersection
 			if (route.getFirst().getIntersection() != null) {
-				Intersection intersection = route.getFirst().getIntersection();
-
-				if (intersection.getTrafficSignal() != null && intersection.getTrafficSignal().getIsActive()) {
-					currentJunction = intersection.getTrafficSignal().getJunction();
-					accelerate();
-				}
+				double distanceFromIntersection = route.getFirst().getIntersection().
+						getCoordinate().distance(currentCoordinate);
 				
-				else if (intersection.getTrafficSignal() != null && !intersection.getTrafficSignal().getIsActive()) {
-//					speed = 0;
-					Junction junction = intersection.getTrafficSignal().getJunction();
-					if (currentJunction != null && junction.getJunctionId() == currentJunction.getJunctionId()) {
-						accelerate();
-					}
-					else {
-						currentJunction = junction;
-						speed = 0;
-						return;
-					}
+				// Check if the intersection is closer than the next vehicle
+				if (distanceFromIntersection < distanceFromVehicle) {
+					checkIntersection();
+					checkFrontVehicleDistance = false;
+				}
+			}
+			
+			// Check the distance of the front vehicle
+			if (checkFrontVehicleDistance) {
+				// Emergency brake if the distance is too close
+				if (distanceFromVehicle <= minDistance) {
+					speed = 0;
+					acceleration = 0;
+					return;
 				}
 				
 				else {
-					accelerate();
-				}
+					brake(distanceFromVehicle - minDistance, frontVehicle.getSpeed());
+				}	
 			}
-			
-			else {
-				currentJunction = null;
-				accelerate();
-			}
-		}
-		else {
-			double distance = frontVehicle.getCurrentCoordinate().distance(currentCoordinate);
-//			System.out.println("Distance: " + distance);
-			
-			if (distance == 0) {
-				System.out.println("COLLISION");
-				speed = 0;
-				return;
-			}
-			
-			else if (distance <= minDistance) {
-//				System.out.println("Too close!!");
-				speed = 0;
-				return;
-			}
-			
-//			else if (distance <= 0.0001 && speed < 2) {
-//				accelerate();
-//			}
-			
-			else {
-				brake(distance);
-//				System.out.println("Braking! from " + name);
-//				System.out.println("Braking!");
-			}	
 		}
 		
 		// Calculate new coordinates based on current speed
-		double coordinateDistance = speed * 0.00001;
+		double coordinateDistance = speed * 0.00001; // 0.00001 = 1 meter
 		double firstNodeDistance = currentCoordinate.distance(route.getFirst().getCoordinate());
 		Coordinate newCoordinate = new Coordinate();
 		currentTrajectoryAngle = calculateAngleBetweenPoints(currentCoordinate, route.getFirst().getCoordinate());
 		
-//		System.out.println("Coordinate distance: " + coordinateDistance);
-//		System.out.println("first node distance: " + firstNodeDistance);
 		// If the new coordinate exceeds the next RoadNode coordinate
 		if (coordinateDistance > firstNodeDistance || firstNodeDistance < 0.00002) {
 			newCoordinate = route.getFirst().getCoordinate();
@@ -191,16 +155,19 @@ public class Vehicle {
 			if (route.size() == 0) {
 				isRouteCompleted = true;
 				context.remove(this);
-//				System.out.println("COMPLETED ROUTE");
 				return;
 			}
 			
+			// Update angle
 			currentTrajectoryAngle = calculateAngleBetweenPoints(currentCoordinate, route.getFirst().getCoordinate());
-//			System.out.println("change trajectory!");
 		}
+		
+		// Calculate the updated coordinate
 		else {
-			double newCoordinateYDifference = Math.round(coordinateDistance * Math.sin(currentTrajectoryAngle) * 1000000.0) / 1000000.0;
-			double newCoordinateXDifference = Math.round(coordinateDistance * Math.cos(currentTrajectoryAngle) * 1000000.0) / 1000000.0;
+			double newCoordinateYDifference = Math.round(coordinateDistance * Math.sin(currentTrajectoryAngle) 
+											  * 1000000.0) / 1000000.0;
+			double newCoordinateXDifference = Math.round(coordinateDistance * Math.cos(currentTrajectoryAngle) 
+											  * 1000000.0) / 1000000.0;
 			double newCoordinateX;
 			double newCoordinateY;
 			
@@ -228,14 +195,13 @@ public class Vehicle {
 				newCoordinateY = currentCoordinate.getY() - newCoordinateYDifference;
 			}
 			
-			newCoordinate = new Coordinate(Math.round(newCoordinateX * 1000000.0) / 1000000.0, Math.round(newCoordinateY * 1000000.0) / 1000000.0);
+			newCoordinate = new Coordinate(Math.round(newCoordinateX * 1000000.0) / 1000000.0, 
+										   Math.round(newCoordinateY * 1000000.0) / 1000000.0);
 		}
+		
+		// Update the vehicle's position
 		currentCoordinate = new Coordinate(newCoordinate);
-		
 		geography.move(this, factory.createPoint(currentCoordinate));
-		
-//		System.out.println("Current: " + currentCoordinate);
-//		System.out.println("Destination: " + route.getFirst().getCoordinate());
 	}
 	
 	private void accelerate() {
@@ -251,27 +217,17 @@ public class Vehicle {
 		}
 	}
 	
-	private void brake(double distance) {
-		double alpha = 100;
+	private void brake(double distance, double finalVelocity) {
+		double requiredDeceleration = (Math.pow(finalVelocity, 2) - Math.pow(speed, 2)) / (2 * distance);
 		
-		if (distance > minDistance) {
-			acceleration -= Math.abs(2 * Math.exp(-alpha * (distance - minDistance)));
-		}
-		else {
-			acceleration = minAcceleration;
-		}
+		acceleration = Math.max(requiredDeceleration, minAcceleration);
 		
-		acceleration = Math.max(acceleration, minAcceleration);
 		speed += acceleration;
 		
 		if (speed <= 0) {
 			speed = 0;
 			acceleration = 0;
 		}
-		
-//		System.out.println("Alpha: " + (1 - Math.exp(alpha * distance)));
-//		System.out.println("Braking: " + acceleration);
-//		System.out.println("Speed: " + speed);
 	}
 	
 	private double calculateAngleBetweenPoints(Coordinate startingCoordinate, Coordinate destinationCoordinate) {
@@ -283,10 +239,6 @@ public class Vehicle {
 		
 		// Calculate the angle of movement
 		double angle = Math.round(Math.atan(yDifference / xDifference) * 1000.0) / 1000.0;
-		
-//		System.out.println("X Difference: " + xDifference);
-//		System.out.println("Y Difference: " + yDifference);
-//		System.out.println("Angle: " + angle);
 		
 		return angle;
 	}
@@ -322,19 +274,21 @@ public class Vehicle {
 	private Vehicle getClosestVehicle() {
 		double totalDistance = 0.001;
 		
+		// If next road node distance is less than 100m
 		if (totalDistance > currentCoordinate.distance(route.getFirst().getCoordinate())) {
 			totalDistance -= currentCoordinate.distance(route.getFirst().getCoordinate());
 			Coordinate checkCoordinate = route.getFirst().getCoordinate();
 			Envelope envelope = new Envelope(currentCoordinate, checkCoordinate);
 			Vehicle nextVehicle = getClosestVehicleWithinEnvelope(envelope);
-//			System.out.println("Current coordinate: " + currentCoordinate);
-//			System.out.println("Envelope coordinate: " + checkCoordinate);
 			
 			int count = 1;
+			
+			// If there is a vehicle within 100m
 			if (nextVehicle == null) {
 				int index = 0;
+				
+				// Check for vehicles along the next road nodes if it is within 100m
 				while (totalDistance >= 0 && nextVehicle == null && index > route.size() - 1) {
-					System.out.println("Iteration: " + count++);
 					Coordinate checkStartCoordinate = route.get(index).getCoordinate();
 					Coordinate checkEndCoordinate = route.get(index + 1).getCoordinate();
 					
@@ -342,14 +296,10 @@ public class Vehicle {
 						checkCoordinate = calculateEnvelopeCoordinate(checkStartCoordinate, checkEndCoordinate, totalDistance);
 						envelope = new Envelope(checkStartCoordinate, checkCoordinate);
 						nextVehicle = getClosestVehicleWithinEnvelope(envelope);
-//						System.out.println("Next start coordinate: " + checkStartCoordinate);
-//						System.out.println("Next start coordinate: " + checkCoordinate);
 					}
 					else {
 						envelope = new Envelope(checkStartCoordinate, checkEndCoordinate);
 						nextVehicle = getClosestVehicleWithinEnvelope(envelope);
-//						System.out.println("Next start coordinate: " + checkStartCoordinate);
-//						System.out.println("Next start coordinate: " + checkEndCoordinate);
 					}
 					
 					totalDistance -= checkStartCoordinate.distance(checkEndCoordinate);
@@ -360,12 +310,11 @@ public class Vehicle {
 			return nextVehicle;
 		}
 		
+		// If the next road node distance is more or equal than 100m
 		else {
 			Coordinate checkCoordinate = calculateEnvelopeCoordinate(currentCoordinate, route.getFirst().getCoordinate(), totalDistance);
 			Envelope envelope = new Envelope(currentCoordinate, checkCoordinate);
 			Vehicle nextVehicle = getClosestVehicleWithinEnvelope(envelope);
-//			System.out.println("Current coordinate: " + currentCoordinate);
-//			System.out.println("Envelope coordinate: " + checkCoordinate);
 			return nextVehicle;
 		}
 	}
@@ -375,12 +324,10 @@ public class Vehicle {
 		Vehicle closestVehicle = null;
 		
 		try {
+			// Get vehicle objects within the envelope
 			Iterator<Vehicle> iterator = geography.getObjectsWithin(envelope, Vehicle.class).iterator();
-//			int count = 0;
 			while (iterator.hasNext()) {
-//				System.out.println("Found: " + ++count);
 				Vehicle nextVehicle = iterator.next();
-				
 				Road currentRoad = TrafficFlowSimulationBuilder.roadHashMap.get(route.getFirst().getRoadId());
 				
 				// Check if the vehicles are on the same road and going the same direction
@@ -388,10 +335,13 @@ public class Vehicle {
 				if (nextVehicle.getCurrentRoadNode() != null) {
 					Road nextVehicleCurrentRoad = TrafficFlowSimulationBuilder.roadHashMap.get(nextVehicle.getCurrentRoadNode().getRoadId());
 					
+					// If the vehicles are on the same road, and the road is not a one-way
 					if (currentRoad.getRoadId() == nextVehicleCurrentRoad.getRoadId() && !currentRoad.isOneWay()) {
+						// Check the direction the vehicles are moving in
 						boolean nextVehicleIsReverseDirection = currentRoad.checkRouteDirection(nextVehicle.getCurrentRoadNode(), nextVehicle.getNextRoadNode());
 						boolean vehicleIsReverseDirection = currentRoad.checkRouteDirection(route.getFirst(), route.get(1));
 						
+						// If the vehicles are not moving in the same direction
 						if (nextVehicleIsReverseDirection != vehicleIsReverseDirection) {
 							directionCheckValid = false;
 						}
@@ -402,6 +352,7 @@ public class Vehicle {
 					}
 				}
 				
+				// If the front vehicle is found
 				if (nextVehicle.getCurrentRoadNode() != null && nextVehicle != this && directionCheckValid) {
 					if (isFirstFound) {
 						closestVehicle = nextVehicle;
@@ -411,6 +362,7 @@ public class Vehicle {
 						double closestVehicleDistance = closestVehicle.getCurrentCoordinate().distance(currentCoordinate);
 						double nextVehicleDistance = nextVehicle.getCurrentCoordinate().distance(currentCoordinate);
 						
+						// Compare the vehicle distance to determine the closer vehicle
 						if (nextVehicleDistance < closestVehicleDistance) {
 							closestVehicle = nextVehicle;
 						}
@@ -423,6 +375,42 @@ public class Vehicle {
 		}
 		
 		return closestVehicle;
+	}
+	
+	private void checkIntersection() {
+		// If RoadNode is an intersection, check traffic lights
+		if (route.getFirst().getIntersection() != null) {
+			Intersection intersection = route.getFirst().getIntersection();
+
+			// If the intersection has a traffic signal and it is a green light
+			if (intersection.getTrafficSignal() != null && intersection.getTrafficSignal().getIsActive()) {
+				currentJunction = intersection.getTrafficSignal().getJunction();
+				accelerate();
+			}
+						
+			// If the intersection has a traffic signal and it is a red light
+			else if (intersection.getTrafficSignal() != null && !intersection.getTrafficSignal().getIsActive()) {
+				Junction junction = intersection.getTrafficSignal().getJunction();
+				
+				// Check if the traffic signal belongs to the same junction that the vehicle just passed
+				if (currentJunction != null && junction.getJunctionId() == currentJunction.getJunctionId()) {
+					accelerate();
+				}
+				else {
+					brake(intersection.getCoordinate().distance(currentCoordinate), 0);
+				}
+			}
+						
+			else {
+				accelerate();
+			}
+		}
+		
+		// If the road node is not an intersection
+		else {
+			currentJunction = null;
+			accelerate();
+		}
 	}
 	
 	private void calculateRoute(RoadNode startingRoadNode, RoadNode destinationNode) {
@@ -513,6 +501,10 @@ public class Vehicle {
 
 	public Coordinate getCurrentCoordinate() {
 		return currentCoordinate;
+	}
+	
+	public double getSpeed() {
+		return speed;
 	}
 
 	public boolean isRouteCompleted() {

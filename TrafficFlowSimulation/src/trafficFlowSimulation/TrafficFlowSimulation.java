@@ -29,75 +29,90 @@ public class TrafficFlowSimulation {
     public void step() {
         currentTick++;
         
-        if (currentTick > tickToSecondRepresentation && !isFirstTick) {
+        if (currentTick > tickToSecondRepresentation || isFirstTick) {
+        	
+            if (isFirstTick) {
+            	isFirstTick = false;
+            }
+            
         	currentTick = 0;
+        	
+        	// Store JSON string of traffic signals
+            String trafficSignalJson = "{\"data\":[";
+        	ArrayList<TrafficSignal> nextTrafficSignalList = new ArrayList<>(TrafficFlowSimulationBuilder.trafficSignalList);
+        	
+        	for (int i = 0; i < nextTrafficSignalList.size(); i++) {
+        		TrafficSignal trafficSignal = nextTrafficSignalList.get(i);
+        		Coordinate coordinate = trafficSignal.getCoordinate();
+        		
+        		String trafficSignalString = "{\"name\": " + "\"" + trafficSignal.getName() + "\"" + 
+        									 ", \"junctionId\": " + trafficSignal.getJunction().getJunctionId() +
+        									 ", \"duration\": " + trafficSignal.getDuration() +
+        									 ", \"sequence\": " + trafficSignal.getSequence() +
+        									 ", \"isActive\": " + trafficSignal.getIsActive() + 
+        									 ", \"xCoordinate\": " + coordinate.getX() + 
+        									 ", \"yCoordinate\": " + coordinate.getY() + "}";
+        		trafficSignalJson += trafficSignalString;
+        		
+        		if (i != nextTrafficSignalList.size() - 1) {
+        			trafficSignalJson += ", ";
+        		}	
+        	}
+        	
+        	trafficSignalJson += "]}";
+            
+            trafficSignalListQueue.add(trafficSignalJson);
+            
+            // Store JSON string of vehicles
+            String vehicleJson = "{\"data\":[";
+        	ArrayList<Vehicle> nextVehicleList = new ArrayList<>(TrafficFlowSimulationBuilder.vehicleList);
+        	boolean isFirst = true;
+        	
+        	for (int i = 0; i < nextVehicleList.size(); i++) {
+        		Vehicle vehicle = nextVehicleList.get(i);
+        		
+        		if (!vehicle.isRouteCompleted()) {
+        			if (isFirst) {
+        				isFirst = false;
+        			}
+        			else {
+        				vehicleJson += ", ";
+        			}
+        			Coordinate vehicleCoordinate = vehicle.getCurrentCoordinate();
+            		String vehicleString = "{\"name\": " + vehicle.getName() + ", \"xCoordinate\": " + vehicleCoordinate.getX() + ", \"yCoordinate\": " + vehicleCoordinate.getY() + "}";
+            		vehicleJson += vehicleString;
+        		}
+        	}
+        	
+        	vehicleJson += "]}";
+            vehicleListQueue.add(vehicleJson);
+            
         	return;
         }
-        
-        if (isFirstTick) {
-        	isFirstTick = false;
-        }
-        
-    	// Store JSON string of traffic signals
-        String trafficSignalJson = "{\"data\":[";
-    	ArrayList<TrafficSignal> nextTrafficSignalList = new ArrayList<>(TrafficFlowSimulationBuilder.trafficSignalList);
-    	
-    	for (int i = 0; i < nextTrafficSignalList.size(); i++) {
-    		TrafficSignal trafficSignal = nextTrafficSignalList.get(i);
-    		Coordinate coordinate = trafficSignal.getCoordinate();
-    		
-    		String trafficSignalString = "{\"name\": " + "\"" + trafficSignal.getName() + "\"" + 
-    									 ", \"junctionId\": " + trafficSignal.getJunction().getJunctionId() +
-    									 ", \"duration\": " + trafficSignal.getDuration() +
-    									 ", \"sequence\": " + trafficSignal.getSequence() +
-    									 ", \"isActive\": " + trafficSignal.getIsActive() + 
-    									 ", \"xCoordinate\": " + coordinate.getX() + 
-    									 ", \"yCoordinate\": " + coordinate.getY() + "}";
-    		trafficSignalJson += trafficSignalString;
-    		
-    		if (i != nextTrafficSignalList.size() - 1) {
-    			trafficSignalJson += ", ";
-    		}	
-    	}
-    	
-    	trafficSignalJson += "]}";
-        
-        trafficSignalListQueue.add(trafficSignalJson);
-        
-        // Store JSON string of vehicles
-        String vehicleJson = "{\"data\":[";
-    	ArrayList<Vehicle> nextVehicleList = new ArrayList<>(TrafficFlowSimulationBuilder.vehicleList);
-    	boolean isFirst = true;
-    	
-    	for (int i = 0; i < nextVehicleList.size(); i++) {
-    		Vehicle vehicle = nextVehicleList.get(i);
-    		
-    		if (!vehicle.isRouteCompleted()) {
-    			if (isFirst) {
-    				isFirst = false;
-    			}
-    			else {
-    				vehicleJson += ", ";
-    			}
-    			Coordinate vehicleCoordinate = vehicle.getCurrentCoordinate();
-        		String vehicleString = "{\"name\": " + vehicle.getName() + ", \"xCoordinate\": " + vehicleCoordinate.getX() + ", \"yCoordinate\": " + vehicleCoordinate.getY() + "}";
-        		vehicleJson += vehicleString;
-    		}
-    	}
-    	
-    	vehicleJson += "]}";
-        vehicleListQueue.add(vehicleJson);
+    }
+    
+    public static String getCurrentTrafficSignalList() {
+    	return trafficSignalListQueue.peek();
     }
     
     public static String getFirstTrafficSignalList() {
-    	if (trafficSignalListQueue.size() == 1) {
+    	if (trafficSignalListQueue.size() < 1) {
+    		return "";
+    	}
+    	
+    	else if (trafficSignalListQueue.size() == 1) {
     		return trafficSignalListQueue.peek();
     	}
+    	
     	String firstTrafficSignalList = trafficSignalListQueue.remove();
     	return firstTrafficSignalList;
     }
     
     public static String getFirstVehicleList() {
+    	if (vehicleListQueue.size() < 1) {
+    		return "";
+    	}
+    	
     	if (vehicleListQueue.size() == 1) {
     		return vehicleListQueue.peek();
     	}
