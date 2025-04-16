@@ -1,0 +1,1267 @@
+WARN  [AWT-EventQueue-0] 2024-06-25T20:07:26,794 ClassUtilities - Utilities.findMethod: warning, could not find method 'generateVehicleAgent([])' in class trafficFlowSimulation.TrafficFlowSimulationBuilder, returning null
+ERROR [AWT-EventQueue-0] 2024-06-25T20:07:26,802 RSApplication - Error while initializing simulation
+java.lang.IllegalArgumentException: Method trafficFlowSimulation.TrafficFlowSimulationBuilder.generateVehicleAgent() not found!
+	at repast.simphony.engine.schedule.CallBackAction.initMethod(CallBackAction.java:101) ~[?:?]
+	at repast.simphony.engine.schedule.CallBackAction.<init>(CallBackAction.java:79) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultActionFactory.createAction(DefaultActionFactory.java:45) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultSchedulableActionFactory.createAction(DefaultSchedulableActionFactory.java:81) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.schedule(Schedule.java:214) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.scheduleVehicleGeneration(TrafficFlowSimulationBuilder.java:97) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.build(TrafficFlowSimulationBuilder.java:90) ~[?:?]
+	at repast.simphony.dataLoader.engine.ClassNameContextBuilder.build(ClassNameContextBuilder.java:41) ~[?:?]
+	at repast.simphony.dataLoader.engine.DataLoaderControllerAction.runInitialize(DataLoaderControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:214) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:1) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:292) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraversal(NaryTree.java:288) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:212) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:383) ~[?:?]
+	at repast.simphony.ui.RSApplication.initSim(RSApplication.java:171) ~[?:?]
+	at repast.simphony.ui.RSApplication.step(RSApplication.java:223) ~[?:?]
+	at repast.simphony.ui.action.StepRun.actionPerformed(StepRun.java:17) ~[?:?]
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972) ~[?:?]
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2313) ~[?:?]
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:405) ~[?:?]
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262) ~[?:?]
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279) ~[?:?]
+	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:297) ~[?:?]
+	at java.awt.Component.processMouseEvent(Component.java:6626) ~[?:?]
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3389) ~[?:?]
+	at java.awt.Component.processEvent(Component.java:6391) ~[?:?]
+	at java.awt.Container.processEvent(Container.java:2266) ~[?:?]
+	at java.awt.Component.dispatchEventImpl(Component.java:5001) ~[?:?]
+	at java.awt.Container.dispatchEventImpl(Container.java:2324) ~[?:?]
+	at java.awt.Component.dispatchEvent(Component.java:4833) ~[?:?]
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948) ~[?:?]
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575) ~[?:?]
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516) ~[?:?]
+	at java.awt.Container.dispatchEventImpl(Container.java:2310) ~[?:?]
+	at java.awt.Window.dispatchEventImpl(Window.java:2780) ~[?:?]
+	at java.awt.Component.dispatchEvent(Component.java:4833) ~[?:?]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:722) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:716) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97) ~[?:?]
+	at java.awt.EventQueue$5.run(EventQueue.java:746) ~[?:?]
+	at java.awt.EventQueue$5.run(EventQueue.java:744) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:743) ~[?:?]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) ~[?:?]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:90) ~[?:?]
+FATAL [Thread-25] 2024-06-25T20:12:29,995 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (1.2800001E7)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.LinkedList.getFirst(LinkedList.java:248) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:55) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+ERROR [AWT-EventQueue-0] 2024-06-25T20:19:48,249 RSApplication - Error while initializing simulation
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:129) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.scheduleVehicleGeneration(TrafficFlowSimulationBuilder.java:98) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.build(TrafficFlowSimulationBuilder.java:90) ~[?:?]
+	at repast.simphony.dataLoader.engine.ClassNameContextBuilder.build(ClassNameContextBuilder.java:41) ~[?:?]
+	at repast.simphony.dataLoader.engine.DataLoaderControllerAction.runInitialize(DataLoaderControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:214) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:1) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:292) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraversal(NaryTree.java:288) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:212) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:383) ~[?:?]
+	at repast.simphony.ui.RSApplication.initSim(RSApplication.java:171) ~[?:?]
+	at repast.simphony.ui.RSApplication.step(RSApplication.java:223) ~[?:?]
+	at repast.simphony.ui.action.StepRun.actionPerformed(StepRun.java:17) ~[?:?]
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972) ~[?:?]
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2313) ~[?:?]
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:405) ~[?:?]
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262) ~[?:?]
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279) ~[?:?]
+	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:297) ~[?:?]
+	at java.awt.Component.processMouseEvent(Component.java:6626) ~[?:?]
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3389) ~[?:?]
+	at java.awt.Component.processEvent(Component.java:6391) ~[?:?]
+	at java.awt.Container.processEvent(Container.java:2266) ~[?:?]
+	at java.awt.Component.dispatchEventImpl(Component.java:5001) ~[?:?]
+	at java.awt.Container.dispatchEventImpl(Container.java:2324) ~[?:?]
+	at java.awt.Component.dispatchEvent(Component.java:4833) ~[?:?]
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948) ~[?:?]
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575) ~[?:?]
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516) ~[?:?]
+	at java.awt.Container.dispatchEventImpl(Container.java:2310) ~[?:?]
+	at java.awt.Window.dispatchEventImpl(Window.java:2780) ~[?:?]
+	at java.awt.Component.dispatchEvent(Component.java:4833) ~[?:?]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:722) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:716) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97) ~[?:?]
+	at java.awt.EventQueue$5.run(EventQueue.java:746) ~[?:?]
+	at java.awt.EventQueue$5.run(EventQueue.java:744) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:743) ~[?:?]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) ~[?:?]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:90) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder$$FastClassByCGLIB$$fbc95165.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:127) ~[?:?]
+	... 55 more
+Caused by: java.lang.NullPointerException: Cannot invoke "java.util.LinkedList.size()" because "this.route" is null
+	at trafficFlowSimulation.Vehicle.<init>(Vehicle.java:41) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.generateVehicleAgent(TrafficFlowSimulationBuilder.java:118) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder$$FastClassByCGLIB$$fbc95165.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:127) ~[?:?]
+	... 55 more
+ERROR [AWT-EventQueue-0] 2024-06-25T20:20:59,746 RSApplication - Error while initializing simulation
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:129) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.scheduleVehicleGeneration(TrafficFlowSimulationBuilder.java:98) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.build(TrafficFlowSimulationBuilder.java:90) ~[?:?]
+	at repast.simphony.dataLoader.engine.ClassNameContextBuilder.build(ClassNameContextBuilder.java:41) ~[?:?]
+	at repast.simphony.dataLoader.engine.DataLoaderControllerAction.runInitialize(DataLoaderControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:214) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:1) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:292) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraversal(NaryTree.java:288) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:212) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:383) ~[?:?]
+	at repast.simphony.ui.RSApplication.initSim(RSApplication.java:171) ~[?:?]
+	at repast.simphony.ui.RSApplication.step(RSApplication.java:223) ~[?:?]
+	at repast.simphony.ui.action.StepRun.actionPerformed(StepRun.java:17) ~[?:?]
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972) ~[?:?]
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2313) ~[?:?]
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:405) ~[?:?]
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262) ~[?:?]
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279) ~[?:?]
+	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:297) ~[?:?]
+	at java.awt.Component.processMouseEvent(Component.java:6626) ~[?:?]
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3389) ~[?:?]
+	at java.awt.Component.processEvent(Component.java:6391) ~[?:?]
+	at java.awt.Container.processEvent(Container.java:2266) ~[?:?]
+	at java.awt.Component.dispatchEventImpl(Component.java:5001) ~[?:?]
+	at java.awt.Container.dispatchEventImpl(Container.java:2324) ~[?:?]
+	at java.awt.Component.dispatchEvent(Component.java:4833) ~[?:?]
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948) ~[?:?]
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575) ~[?:?]
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516) ~[?:?]
+	at java.awt.Container.dispatchEventImpl(Container.java:2310) ~[?:?]
+	at java.awt.Window.dispatchEventImpl(Window.java:2780) ~[?:?]
+	at java.awt.Component.dispatchEvent(Component.java:4833) ~[?:?]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:722) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:716) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97) ~[?:?]
+	at java.awt.EventQueue$5.run(EventQueue.java:746) ~[?:?]
+	at java.awt.EventQueue$5.run(EventQueue.java:744) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:743) ~[?:?]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) ~[?:?]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:90) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder$$FastClassByCGLIB$$fbc95165.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:127) ~[?:?]
+	... 55 more
+Caused by: java.lang.NullPointerException: Cannot invoke "trafficFlowSimulation.Road.getRoadNodeList()" because the return value of "java.util.Map.get(Object)" is null
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.generateVehicleAgent(TrafficFlowSimulationBuilder.java:112) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder$$FastClassByCGLIB$$fbc95165.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:127) ~[?:?]
+	... 55 more
+ERROR [AWT-EventQueue-0] 2024-06-25T20:30:13,097 RSApplication - Error while initializing simulation
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:129) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.scheduleVehicleGeneration(TrafficFlowSimulationBuilder.java:98) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.build(TrafficFlowSimulationBuilder.java:90) ~[?:?]
+	at repast.simphony.dataLoader.engine.ClassNameContextBuilder.build(ClassNameContextBuilder.java:41) ~[?:?]
+	at repast.simphony.dataLoader.engine.DataLoaderControllerAction.runInitialize(DataLoaderControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:214) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:1) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:292) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraversal(NaryTree.java:288) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:212) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:383) ~[?:?]
+	at repast.simphony.ui.RSApplication.initSim(RSApplication.java:171) ~[?:?]
+	at repast.simphony.ui.RSApplication.step(RSApplication.java:223) ~[?:?]
+	at repast.simphony.ui.action.StepRun.actionPerformed(StepRun.java:17) ~[?:?]
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972) ~[?:?]
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2313) ~[?:?]
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:405) ~[?:?]
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262) ~[?:?]
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279) ~[?:?]
+	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:297) ~[?:?]
+	at java.awt.Component.processMouseEvent(Component.java:6626) ~[?:?]
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3389) ~[?:?]
+	at java.awt.Component.processEvent(Component.java:6391) ~[?:?]
+	at java.awt.Container.processEvent(Container.java:2266) ~[?:?]
+	at java.awt.Component.dispatchEventImpl(Component.java:5001) ~[?:?]
+	at java.awt.Container.dispatchEventImpl(Container.java:2324) ~[?:?]
+	at java.awt.Component.dispatchEvent(Component.java:4833) ~[?:?]
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948) ~[?:?]
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575) ~[?:?]
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516) ~[?:?]
+	at java.awt.Container.dispatchEventImpl(Container.java:2310) ~[?:?]
+	at java.awt.Window.dispatchEventImpl(Window.java:2780) ~[?:?]
+	at java.awt.Component.dispatchEvent(Component.java:4833) ~[?:?]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:722) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:716) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97) ~[?:?]
+	at java.awt.EventQueue$5.run(EventQueue.java:746) ~[?:?]
+	at java.awt.EventQueue$5.run(EventQueue.java:744) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:743) ~[?:?]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) ~[?:?]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:90) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder$$FastClassByCGLIB$$fbc95165.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:127) ~[?:?]
+	... 55 more
+Caused by: java.lang.NullPointerException: Cannot invoke "trafficFlowSimulation.Road.getRoadNodeList()" because the return value of "java.util.Map.get(Object)" is null
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.generateVehicleAgent(TrafficFlowSimulationBuilder.java:131) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder$$FastClassByCGLIB$$fbc95165.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:127) ~[?:?]
+	... 55 more
+ERROR [AWT-EventQueue-0] 2024-06-25T20:34:08,348 RSApplication - Error while initializing simulation
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:129) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.scheduleVehicleGeneration(TrafficFlowSimulationBuilder.java:98) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.build(TrafficFlowSimulationBuilder.java:90) ~[?:?]
+	at repast.simphony.dataLoader.engine.ClassNameContextBuilder.build(ClassNameContextBuilder.java:41) ~[?:?]
+	at repast.simphony.dataLoader.engine.DataLoaderControllerAction.runInitialize(DataLoaderControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:214) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:1) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:292) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraversal(NaryTree.java:288) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:212) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:383) ~[?:?]
+	at repast.simphony.ui.RSApplication.initSim(RSApplication.java:171) ~[?:?]
+	at repast.simphony.ui.RSApplication.step(RSApplication.java:223) ~[?:?]
+	at repast.simphony.ui.action.StepRun.actionPerformed(StepRun.java:17) ~[?:?]
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972) ~[?:?]
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2313) ~[?:?]
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:405) ~[?:?]
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262) ~[?:?]
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279) ~[?:?]
+	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:297) ~[?:?]
+	at java.awt.Component.processMouseEvent(Component.java:6626) ~[?:?]
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3389) ~[?:?]
+	at java.awt.Component.processEvent(Component.java:6391) ~[?:?]
+	at java.awt.Container.processEvent(Container.java:2266) ~[?:?]
+	at java.awt.Component.dispatchEventImpl(Component.java:5001) ~[?:?]
+	at java.awt.Container.dispatchEventImpl(Container.java:2324) ~[?:?]
+	at java.awt.Component.dispatchEvent(Component.java:4833) ~[?:?]
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948) ~[?:?]
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575) ~[?:?]
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516) ~[?:?]
+	at java.awt.Container.dispatchEventImpl(Container.java:2310) ~[?:?]
+	at java.awt.Window.dispatchEventImpl(Window.java:2780) ~[?:?]
+	at java.awt.Component.dispatchEvent(Component.java:4833) ~[?:?]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:722) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:716) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97) ~[?:?]
+	at java.awt.EventQueue$5.run(EventQueue.java:746) ~[?:?]
+	at java.awt.EventQueue$5.run(EventQueue.java:744) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:743) ~[?:?]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) ~[?:?]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:90) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder$$FastClassByCGLIB$$fbc95165.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:127) ~[?:?]
+	... 55 more
+Caused by: java.lang.NullPointerException: Cannot invoke "trafficFlowSimulation.Road.getRoadNodeList()" because the return value of "java.util.Map.get(Object)" is null
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.generateVehicleAgent(TrafficFlowSimulationBuilder.java:121) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder$$FastClassByCGLIB$$fbc95165.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:127) ~[?:?]
+	... 55 more
+FATAL [Thread-25] 2024-06-25T20:38:10,239 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (1.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.NullPointerException: Cannot invoke "java.util.LinkedList.size()" because "this.route" is null
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:51) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-25] 2024-06-25T20:40:45,708 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (1.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.NullPointerException: Cannot invoke "java.util.LinkedList.size()" because "this.route" is null
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:54) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-25] 2024-06-25T20:42:27,978 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (1000001.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.LinkedList.getFirst(LinkedList.java:248) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:66) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-25] 2024-06-25T20:43:56,464 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (300001.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.LinkedList.getFirst(LinkedList.java:248) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:66) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-25] 2024-06-25T20:47:27,652 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (2.4000001E7)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.LinkedList.getFirst(LinkedList.java:248) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:66) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-25] 2024-06-25T20:53:04,268 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (3000001.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.LinkedList.getFirst(LinkedList.java:248) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:156) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+ERROR [AWT-EventQueue-0] 2024-06-25T21:22:05,615 RSApplication - Scenario Load Error
+repast.simphony.scenario.ScenarioLoadException: Cannot invoke "repast.simphony.engine.environment.RunEnvironment.getCurrentSchedule()" because the return value of "repast.simphony.engine.environment.RunEnvironment.getInstance()" is null
+	at repast.simphony.scenario.ScenarioLoader.load(ScenarioLoader.java:229) ~[?:?]
+	at repast.simphony.ui.RSApplication.open(RSApplication.java:373) ~[?:?]
+	at repast.simphony.ui.RSAppConfigurator.postWindowOpen(RSAppConfigurator.java:39) ~[?:?]
+	at saf.core.ui.GUICreatorDelegate.runDisplay(GUICreatorDelegate.java:216) ~[?:?]
+	at saf.core.ui.GUICreator$1.run(GUICreator.java:18) ~[?:?]
+	at simphony.util.ThreadUtilities$Runner.run(ThreadUtilities.java:33) ~[saf.core.runtime.jar:?]
+	at simphony.util.ThreadUtilities.runInEventThread(ThreadUtilities.java:47) ~[saf.core.runtime.jar:?]
+	at saf.core.ui.GUICreator.runDisplay(GUICreator.java:16) ~[?:?]
+	at repast.simphony.ui.RSUIPlugin$1.run(RSUIPlugin.java:101) ~[?:?]
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318) ~[?:?]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:771) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:722) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:716) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:741) ~[?:?]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) ~[?:?]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:90) ~[?:?]
+Caused by: java.lang.NullPointerException: Cannot invoke "repast.simphony.engine.environment.RunEnvironment.getCurrentSchedule()" because the return value of "repast.simphony.engine.environment.RunEnvironment.getInstance()" is null
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.<init>(TrafficFlowSimulationBuilder.java:62) ~[?:?]
+	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:?]
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[?:?]
+	at java.lang.reflect.ReflectAccess.newInstance(ReflectAccess.java:128) ~[?:?]
+	at jdk.internal.reflect.ReflectionFactory.newInstance(ReflectionFactory.java:347) ~[?:?]
+	at java.lang.Class.newInstance(Class.java:645) ~[?:?]
+	at repast.simphony.dataLoader.engine.ClassNameContextBuilder.<init>(ClassNameContextBuilder.java:21) ~[?:?]
+	at repast.simphony.dataLoader.engine.ClassNameDataLoaderAction.<init>(ClassNameDataLoaderAction.java:23) ~[?:?]
+	at repast.simphony.dataLoader.engine.CNDataLoaderActionLoader.performLoad(CNDataLoaderActionLoader.java:35) ~[?:?]
+	at repast.simphony.scenario.AbstractActionLoader.loadAction(AbstractActionLoader.java:35) ~[?:?]
+	at repast.simphony.scenario.ScenarioFileLoader.createActions(ScenarioFileLoader.java:106) ~[?:?]
+	at repast.simphony.scenario.ScenarioFileLoader.load(ScenarioFileLoader.java:70) ~[?:?]
+	at repast.simphony.scenario.ScenarioLoader.load(ScenarioLoader.java:199) ~[?:?]
+	... 21 more
+FATAL [Thread-25] 2024-06-26T15:56:41,056 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (1.9500001E7)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.LinkedList.getFirst(LinkedList.java:248) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:115) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-25] 2024-06-26T16:04:27,119 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (100005.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:129) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder$$FastClassByCGLIB$$fbc95165.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:127) ~[?:?]
+	... 6 more
+Caused by: java.lang.NullPointerException: Cannot invoke "trafficFlowSimulation.RoadNode.equals(trafficFlowSimulation.RoadNode)" because "node" is null
+	at trafficFlowSimulation.Vehicle.aStarSearch(Vehicle.java:205) ~[?:?]
+	at trafficFlowSimulation.Vehicle.calculateRoute(Vehicle.java:167) ~[?:?]
+	at trafficFlowSimulation.Vehicle.<init>(Vehicle.java:39) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.generateVehicleAgent(TrafficFlowSimulationBuilder.java:147) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder$$FastClassByCGLIB$$fbc95165.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:127) ~[?:?]
+	... 6 more
+FATAL [Thread-25] 2024-06-26T16:08:24,338 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (1.00000021E8)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:129) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder$$FastClassByCGLIB$$fbc95165.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:127) ~[?:?]
+	... 6 more
+Caused by: java.lang.NullPointerException: Cannot invoke "trafficFlowSimulation.RoadNode.equals(trafficFlowSimulation.RoadNode)" because "node" is null
+	at trafficFlowSimulation.Vehicle.aStarSearch(Vehicle.java:205) ~[?:?]
+	at trafficFlowSimulation.Vehicle.calculateRoute(Vehicle.java:167) ~[?:?]
+	at trafficFlowSimulation.Vehicle.<init>(Vehicle.java:39) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.generateVehicleAgent(TrafficFlowSimulationBuilder.java:148) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder$$FastClassByCGLIB$$fbc95165.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:127) ~[?:?]
+	... 6 more
+FATAL [Thread-43] 2024-06-27T20:54:06,968 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (2.70100001E8)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.LinkedList.getFirst(LinkedList.java:248) ~[?:?]
+	at trafficFlowSimulation.Vehicle.getCurrentRoadNode(Vehicle.java:262) ~[?:?]
+	at trafficFlowSimulation.Vehicle.getClosestVehicleWithinEnvelope(Vehicle.java:147) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:71) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+ERROR [AWT-EventQueue-0] 2024-06-27T21:20:45,050 RSApplication - Error while initializing simulation
+java.lang.NullPointerException: Cannot invoke "trafficFlowSimulation.Junction.changeActiveToNextTrafficSignal()" because "this.junction" is null
+	at trafficFlowSimulation.TrafficSignal.startTrafficSignalTimer(TrafficSignal.java:65) ~[?:?]
+	at trafficFlowSimulation.Junction.start(Junction.java:16) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.linkTrafficSignalsWithIntersection(TrafficFlowSimulationBuilder.java:373) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.loadTrafficSignalFeatures(TrafficFlowSimulationBuilder.java:329) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.build(TrafficFlowSimulationBuilder.java:88) ~[?:?]
+	at repast.simphony.dataLoader.engine.ClassNameContextBuilder.build(ClassNameContextBuilder.java:41) ~[?:?]
+	at repast.simphony.dataLoader.engine.DataLoaderControllerAction.runInitialize(DataLoaderControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:214) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:1) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:292) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraversal(NaryTree.java:288) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:212) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:383) ~[?:?]
+	at repast.simphony.ui.RSApplication.initSim(RSApplication.java:171) ~[?:?]
+	at repast.simphony.ui.RSApplication.step(RSApplication.java:223) ~[?:?]
+	at repast.simphony.ui.action.StepRun.actionPerformed(StepRun.java:17) ~[?:?]
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972) ~[?:?]
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2313) ~[?:?]
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:405) ~[?:?]
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262) ~[?:?]
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279) ~[?:?]
+	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:297) ~[?:?]
+	at java.awt.Component.processMouseEvent(Component.java:6626) ~[?:?]
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3389) ~[?:?]
+	at java.awt.Component.processEvent(Component.java:6391) ~[?:?]
+	at java.awt.Container.processEvent(Container.java:2266) ~[?:?]
+	at java.awt.Component.dispatchEventImpl(Component.java:5001) ~[?:?]
+	at java.awt.Container.dispatchEventImpl(Container.java:2324) ~[?:?]
+	at java.awt.Component.dispatchEvent(Component.java:4833) ~[?:?]
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948) ~[?:?]
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575) ~[?:?]
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516) ~[?:?]
+	at java.awt.Container.dispatchEventImpl(Container.java:2310) ~[?:?]
+	at java.awt.Window.dispatchEventImpl(Window.java:2780) ~[?:?]
+	at java.awt.Component.dispatchEvent(Component.java:4833) ~[?:?]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:722) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:716) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97) ~[?:?]
+	at java.awt.EventQueue$5.run(EventQueue.java:746) ~[?:?]
+	at java.awt.EventQueue$5.run(EventQueue.java:744) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:743) ~[?:?]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) ~[?:?]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:90) ~[?:?]
+FATAL [Thread-43] 2024-06-27T21:23:24,889 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (100001.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.NullPointerException: Cannot invoke "java.util.LinkedList.getFirst()" because "this.route" is null
+	at trafficFlowSimulation.Vehicle.getCurrentRoadNode(Vehicle.java:277) ~[?:?]
+	at trafficFlowSimulation.Vehicle.getClosestVehicleWithinEnvelope(Vehicle.java:162) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:71) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-43] 2024-06-27T21:32:21,983 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (3.0100001E7)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.NullPointerException: Cannot invoke "java.util.LinkedList.getFirst()" because "this.route" is null
+	at trafficFlowSimulation.Vehicle.getCurrentRoadNode(Vehicle.java:282) ~[?:?]
+	at trafficFlowSimulation.Vehicle.getClosestVehicleWithinEnvelope(Vehicle.java:167) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:71) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-43] 2024-06-27T21:47:06,033 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (3.0100001E7)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.NullPointerException: Cannot invoke "java.util.LinkedList.getFirst()" because "this.route" is null
+	at trafficFlowSimulation.Vehicle.getCurrentRoadNode(Vehicle.java:282) ~[?:?]
+	at trafficFlowSimulation.Vehicle.getClosestVehicleWithinEnvelope(Vehicle.java:167) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:71) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-43] 2024-06-27T21:48:36,631 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (2.0100001E7)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.NullPointerException: Cannot invoke "java.util.LinkedList.getFirst()" because "this.route" is null
+	at trafficFlowSimulation.Vehicle.getCurrentRoadNode(Vehicle.java:282) ~[?:?]
+	at trafficFlowSimulation.Vehicle.getClosestVehicleWithinEnvelope(Vehicle.java:167) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:71) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-43] 2024-06-27T21:50:41,782 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (5.2600001E7)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.LinkedList.getFirst(LinkedList.java:248) ~[?:?]
+	at trafficFlowSimulation.Vehicle.getCurrentRoadNode(Vehicle.java:286) ~[?:?]
+	at trafficFlowSimulation.Vehicle.getClosestVehicleWithinEnvelope(Vehicle.java:167) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:71) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-43] 2024-06-27T21:52:57,199 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (8.0400001E7)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.LinkedList.getFirst(LinkedList.java:248) ~[?:?]
+	at trafficFlowSimulation.Vehicle.getCurrentRoadNode(Vehicle.java:282) ~[?:?]
+	at trafficFlowSimulation.Vehicle.getClosestVehicleWithinEnvelope(Vehicle.java:167) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:71) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+ERROR [AWT-EventQueue-0] 2024-06-29T14:40:56,172 RSApplication - Error while initializing simulation
+java.lang.IllegalStateException: Task already scheduled or cancelled
+	at java.util.Timer.sched(Timer.java:413) ~[?:?]
+	at java.util.Timer.schedule(Timer.java:205) ~[?:?]
+	at trafficFlowSimulation.TrafficSignal.startTrafficSignalTimer(TrafficSignal.java:65) ~[?:?]
+	at trafficFlowSimulation.Junction.start(Junction.java:16) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.linkTrafficSignalsWithIntersection(TrafficFlowSimulationBuilder.java:405) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.loadTrafficSignalFeatures(TrafficFlowSimulationBuilder.java:354) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.build(TrafficFlowSimulationBuilder.java:89) ~[?:?]
+	at repast.simphony.dataLoader.engine.ClassNameContextBuilder.build(ClassNameContextBuilder.java:41) ~[?:?]
+	at repast.simphony.dataLoader.engine.DataLoaderControllerAction.runInitialize(DataLoaderControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:214) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController$2.visit(DefaultController.java:1) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:292) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraverals(NaryTree.java:295) ~[?:?]
+	at repast.simphony.util.collections.NaryTree.preOrderTraversal(NaryTree.java:288) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:212) ~[?:?]
+	at repast.simphony.engine.controller.DefaultController.runInitialize(DefaultController.java:383) ~[?:?]
+	at repast.simphony.ui.RSApplication.initSim(RSApplication.java:171) ~[?:?]
+	at repast.simphony.ui.RSApplication.step(RSApplication.java:223) ~[?:?]
+	at repast.simphony.ui.action.StepRun.actionPerformed(StepRun.java:17) ~[?:?]
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972) ~[?:?]
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2313) ~[?:?]
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:405) ~[?:?]
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262) ~[?:?]
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279) ~[?:?]
+	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:297) ~[?:?]
+	at java.awt.Component.processMouseEvent(Component.java:6626) ~[?:?]
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3389) ~[?:?]
+	at java.awt.Component.processEvent(Component.java:6391) ~[?:?]
+	at java.awt.Container.processEvent(Container.java:2266) ~[?:?]
+	at java.awt.Component.dispatchEventImpl(Component.java:5001) ~[?:?]
+	at java.awt.Container.dispatchEventImpl(Container.java:2324) ~[?:?]
+	at java.awt.Component.dispatchEvent(Component.java:4833) ~[?:?]
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948) ~[?:?]
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575) ~[?:?]
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516) ~[?:?]
+	at java.awt.Container.dispatchEventImpl(Container.java:2310) ~[?:?]
+	at java.awt.Window.dispatchEventImpl(Window.java:2780) ~[?:?]
+	at java.awt.Component.dispatchEvent(Component.java:4833) ~[?:?]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:722) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:716) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97) ~[?:?]
+	at java.awt.EventQueue$5.run(EventQueue.java:746) ~[?:?]
+	at java.awt.EventQueue$5.run(EventQueue.java:744) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:743) ~[?:?]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) ~[?:?]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:90) ~[?:?]
+FATAL [Thread-43] 2024-06-30T10:35:33,608 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (1.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:129) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder$$FastClassByCGLIB$$fbc95165.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:127) ~[?:?]
+	... 6 more
+Caused by: java.util.NoSuchElementException
+	at java.util.LinkedList.getFirst(LinkedList.java:248) ~[?:?]
+	at trafficFlowSimulation.Vehicle.<init>(Vehicle.java:49) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder.generateVehicleAgent(TrafficFlowSimulationBuilder.java:119) ~[?:?]
+	at trafficFlowSimulation.TrafficFlowSimulationBuilder$$FastClassByCGLIB$$fbc95165.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.CallBackAction.execute(CallBackAction.java:127) ~[?:?]
+	... 6 more
+FATAL [Thread-43] 2024-06-30T10:38:44,911 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (10001.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.IllegalArgumentException: Points of LinearRing do not form a closed linestring
+	at org.locationtech.jts.geom.LinearRing.validateConstruction(LinearRing.java:91) ~[?:?]
+	at org.locationtech.jts.geom.LinearRing.<init>(LinearRing.java:86) ~[?:?]
+	at org.locationtech.jts.geom.GeometryFactory.createLinearRing(GeometryFactory.java:380) ~[?:?]
+	at org.locationtech.jts.geom.GeometryFactory.createLinearRing(GeometryFactory.java:367) ~[?:?]
+	at org.locationtech.jts.geom.GeometryFactory.toGeometry(GeometryFactory.java:235) ~[?:?]
+	at repast.simphony.space.gis.DefaultGeography$WithinItemVisitor.<init>(DefaultGeography.java:602) ~[?:?]
+	at repast.simphony.space.gis.DefaultGeography.getObjectsWithin(DefaultGeography.java:287) ~[?:?]
+	at trafficFlowSimulation.Vehicle.getClosestVehicleWithinEnvelope(Vehicle.java:243) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:109) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-43] 2024-06-30T10:48:48,045 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (2.07100001E8)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.LinkedList.getFirst(LinkedList.java:248) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:191) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-43] 2024-06-30T10:50:27,753 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (10001.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.IllegalArgumentException: Points of LinearRing do not form a closed linestring
+	at org.locationtech.jts.geom.LinearRing.validateConstruction(LinearRing.java:91) ~[?:?]
+	at org.locationtech.jts.geom.LinearRing.<init>(LinearRing.java:86) ~[?:?]
+	at org.locationtech.jts.geom.GeometryFactory.createLinearRing(GeometryFactory.java:380) ~[?:?]
+	at org.locationtech.jts.geom.GeometryFactory.createLinearRing(GeometryFactory.java:367) ~[?:?]
+	at org.locationtech.jts.geom.GeometryFactory.toGeometry(GeometryFactory.java:235) ~[?:?]
+	at repast.simphony.space.gis.DefaultGeography$WithinItemVisitor.<init>(DefaultGeography.java:602) ~[?:?]
+	at repast.simphony.space.gis.DefaultGeography.getObjectsWithin(DefaultGeography.java:287) ~[?:?]
+	at trafficFlowSimulation.Vehicle.getClosestVehicleWithinEnvelope(Vehicle.java:243) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:109) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-43] 2024-06-30T11:32:33,884 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (840001.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.IndexOutOfBoundsException: Index: 9, Size: 9
+	at java.util.LinkedList.checkElementIndex(LinkedList.java:559) ~[?:?]
+	at java.util.LinkedList.get(LinkedList.java:480) ~[?:?]
+	at trafficFlowSimulation.Vehicle.getClosestVehicle(Vehicle.java:257) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:82) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-43] 2024-06-30T11:34:55,761 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (20001.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.IllegalArgumentException: Points of LinearRing do not form a closed linestring
+	at org.locationtech.jts.geom.LinearRing.validateConstruction(LinearRing.java:91) ~[?:?]
+	at org.locationtech.jts.geom.LinearRing.<init>(LinearRing.java:86) ~[?:?]
+	at org.locationtech.jts.geom.GeometryFactory.createLinearRing(GeometryFactory.java:380) ~[?:?]
+	at org.locationtech.jts.geom.GeometryFactory.createLinearRing(GeometryFactory.java:367) ~[?:?]
+	at org.locationtech.jts.geom.GeometryFactory.toGeometry(GeometryFactory.java:235) ~[?:?]
+	at repast.simphony.space.gis.DefaultGeography$WithinItemVisitor.<init>(DefaultGeography.java:602) ~[?:?]
+	at repast.simphony.space.gis.DefaultGeography.getObjectsWithin(DefaultGeography.java:287) ~[?:?]
+	at trafficFlowSimulation.Vehicle.getClosestVehicleWithinEnvelope(Vehicle.java:287) ~[?:?]
+	at trafficFlowSimulation.Vehicle.getClosestVehicle(Vehicle.java:280) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:82) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-43] 2024-07-01T10:53:12,260 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (15.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:227) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.util.NoSuchElementException
+	at java.util.LinkedList.getFirst(LinkedList.java:248) ~[?:?]
+	at trafficFlowSimulation.Vehicle.move(Vehicle.java:173) ~[?:?]
+	at trafficFlowSimulation.Vehicle$$FastClassByCGLIB$$2d4ff650.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-25] 2024-07-01T12:58:19,707 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (2.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Junction$$FastClassByCGLIB$$f674a4b0.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64) ~[?:?]
+	at jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70) ~[?:?]
+	at jdk.internal.util.Preconditions.checkIndex(Preconditions.java:266) ~[?:?]
+	at java.util.Objects.checkIndex(Objects.java:359) ~[?:?]
+	at java.util.ArrayList.get(ArrayList.java:427) ~[?:?]
+	at trafficFlowSimulation.Junction.run(Junction.java:32) ~[?:?]
+	at trafficFlowSimulation.Junction$$FastClassByCGLIB$$f674a4b0.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-25] 2024-07-01T13:01:14,037 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (1.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Junction$$FastClassByCGLIB$$f674a4b0.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64) ~[?:?]
+	at jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70) ~[?:?]
+	at jdk.internal.util.Preconditions.checkIndex(Preconditions.java:266) ~[?:?]
+	at java.util.Objects.checkIndex(Objects.java:359) ~[?:?]
+	at java.util.ArrayList.get(ArrayList.java:427) ~[?:?]
+	at trafficFlowSimulation.Junction.run(Junction.java:32) ~[?:?]
+	at trafficFlowSimulation.Junction$$FastClassByCGLIB$$f674a4b0.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-44] 2024-07-01T13:04:09,688 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (32.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:842) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at trafficFlowSimulation.Junction$$FastClassByCGLIB$$f674a4b0.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64) ~[?:?]
+	at jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70) ~[?:?]
+	at jdk.internal.util.Preconditions.checkIndex(Preconditions.java:266) ~[?:?]
+	at java.util.Objects.checkIndex(Objects.java:359) ~[?:?]
+	at java.util.ArrayList.get(ArrayList.java:427) ~[?:?]
+	at trafficFlowSimulation.Junction.run(Junction.java:31) ~[?:?]
+	at trafficFlowSimulation.Junction$$FastClassByCGLIB$$f674a4b0.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+INFO  [pool-2-thread-1] 2024-07-02T09:09:30,640 OneRunRunner - ORR Received: {"params" : [{"name":"randomSeed","value":"1895640143"}]}
+INFO  [pool-2-thread-1] 2024-07-02T09:09:31,496 OneRunRunner - ORR Received: init
+INFO  [pool-2-thread-1] 2024-07-02T09:09:31,591 ChartServerControllerAction - Run Initialize
+INFO  [pool-2-thread-1] 2024-07-02T09:09:33,909 DisplayServerControllerAction - DisplayServerControllerAction.runInitialize()
+INFO  [pool-2-thread-1] 2024-07-02T09:09:33,918 DisplayServerControllerAction - Initializing display : GIS Display - GIS 3D
+INFO  [pool-2-thread-1] 2024-07-02T09:09:33,918 DisplayServerControllerAction - Found viz type in registry: GIS 3D
+INFO  [pool-2-thread-1] 2024-07-02T09:09:34,000 DisplayServer - DisplayServerGIS.init()
+INFO  [pool-2-thread-1] 2024-07-02T09:09:34,086 DisplayServerControllerAction - Initializing display : Test Display - GIS 3D
+INFO  [pool-2-thread-1] 2024-07-02T09:09:34,087 DisplayServerControllerAction - Found viz type in registry: GIS 3D
+INFO  [pool-2-thread-1] 2024-07-02T09:09:34,116 DisplayServer - DisplayServerGIS.init()
+INFO  [pool-2-thread-1] 2024-07-02T09:10:23,181 OneRunRunner - ORR Received: start
+INFO  [pool-2-thread-1] 2024-07-02T09:10:52,206 OneRunRunner - ORR Received: pause
+INFO  [pool-2-thread-1] 2024-07-02T09:10:53,142 OneRunRunner - ORR Received: stop
+INFO  [Thread-1] 2024-07-02T09:10:53,143 OneRunRunner - Model stopped callback triggered
+INFO  [Thread-1] 2024-07-02T09:10:53,219 DisplayServer - Display Server Destroy
+INFO  [Thread-1] 2024-07-02T09:10:53,234 DisplayServer - Display Server Destroy
+INFO  [pool-2-thread-1] 2024-07-02T09:11:01,420 OneRunRunner - ORR Received: stop
+INFO  [pool-2-thread-1] 2024-07-02T09:11:01,421 OneRunRunner - ORR Received: shutdown
+INFO  [pool-2-thread-1] 2024-07-02T09:11:01,421 OneRunRunner - Shutting down the Repast model runner
+INFO  [main] 2024-07-02T09:11:01,422 OneRunRunner - MSG Handler Canceled -- probably via stop
+INFO  [main] 2024-07-02T09:11:01,427 OneRunRunner - One Run Runner Cleaned Up
+INFO  [pool-2-thread-1] 2024-07-02T09:29:43,032 OneRunRunner - ORR Received: {"params" : [{"name":"randomSeed","value":"1896826839"}]}
+INFO  [pool-2-thread-1] 2024-07-02T09:29:43,821 OneRunRunner - ORR Received: init
+INFO  [pool-2-thread-1] 2024-07-02T09:29:43,889 ChartServerControllerAction - Run Initialize
+INFO  [pool-2-thread-1] 2024-07-02T09:29:46,358 DisplayServerControllerAction - DisplayServerControllerAction.runInitialize()
+INFO  [pool-2-thread-1] 2024-07-02T09:29:46,368 DisplayServerControllerAction - Initializing display : GIS Display - GIS 3D
+INFO  [pool-2-thread-1] 2024-07-02T09:29:46,368 DisplayServerControllerAction - Found viz type in registry: GIS 3D
+INFO  [pool-2-thread-1] 2024-07-02T09:29:46,440 DisplayServer - DisplayServerGIS.init()
+INFO  [pool-2-thread-1] 2024-07-02T09:29:46,632 DisplayServerControllerAction - Initializing display : Test Display - GIS 3D
+INFO  [pool-2-thread-1] 2024-07-02T09:29:46,632 DisplayServerControllerAction - Found viz type in registry: GIS 3D
+INFO  [pool-2-thread-1] 2024-07-02T09:29:46,659 DisplayServer - DisplayServerGIS.init()
+INFO  [pool-2-thread-1] 2024-07-02T09:30:39,428 OneRunRunner - ORR Received: stop
+INFO  [pool-2-thread-1] 2024-07-02T09:30:39,428 OneRunRunner - Model stopped callback triggered
+INFO  [pool-2-thread-1] 2024-07-02T09:30:39,514 DisplayServer - Display Server Destroy
+INFO  [pool-2-thread-1] 2024-07-02T09:30:39,719 DisplayServer - Display Server Destroy
+INFO  [pool-2-thread-1] 2024-07-02T09:30:43,308 OneRunRunner - ORR Received: shutdown
+INFO  [pool-2-thread-1] 2024-07-02T09:30:43,309 OneRunRunner - Shutting down the Repast model runner
+INFO  [main] 2024-07-02T09:30:43,310 OneRunRunner - MSG Handler Canceled -- probably via stop
+INFO  [main] 2024-07-02T09:30:43,316 OneRunRunner - One Run Runner Cleaned Up
+FATAL [AWT-EventQueue-0] 2024-07-02T12:53:55,175 RSUIPlugin - Fatal error starting Repast
+java.lang.NoClassDefFoundError: org/eclipse/jetty/server/Handler
+	at java.lang.Class.getDeclaredMethods0(Native Method) ~[?:?]
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:3402) ~[?:?]
+	at java.lang.Class.privateGetPublicMethods(Class.java:3427) ~[?:?]
+	at java.lang.Class.getMethods(Class.java:2019) ~[?:?]
+	at repast.simphony.engine.watcher.WatchAnnotationReader.findWatchAnnotation(WatchAnnotationReader.java:42) ~[?:?]
+	at repast.simphony.engine.watcher.WatchAnnotationReader.processClass(WatchAnnotationReader.java:30) ~[?:?]
+	at repast.simphony.engine.watcher.WatchAnnotationReader.processClasses(WatchAnnotationReader.java:36) ~[?:?]
+	at repast.simphony.scenario.ScenarioLoader.load(ScenarioLoader.java:155) ~[?:?]
+	at repast.simphony.ui.RSApplication.open(RSApplication.java:373) ~[?:?]
+	at repast.simphony.ui.RSAppConfigurator.postWindowOpen(RSAppConfigurator.java:39) ~[?:?]
+	at saf.core.ui.GUICreatorDelegate.runDisplay(GUICreatorDelegate.java:216) ~[?:?]
+	at saf.core.ui.GUICreator$1.run(GUICreator.java:18) ~[?:?]
+	at simphony.util.ThreadUtilities$Runner.run(ThreadUtilities.java:33) ~[saf.core.runtime.jar:?]
+	at simphony.util.ThreadUtilities.runInEventThread(ThreadUtilities.java:47) ~[saf.core.runtime.jar:?]
+	at saf.core.ui.GUICreator.runDisplay(GUICreator.java:16) ~[?:?]
+	at repast.simphony.ui.RSUIPlugin$1.run(RSUIPlugin.java:101) ~[?:?]
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318) ~[?:?]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:771) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:722) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:716) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:741) ~[?:?]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) ~[?:?]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:90) ~[?:?]
+Caused by: java.lang.ClassNotFoundException: org.eclipse.jetty.server.Handler
+	at org.java.plugin.standard.StandardPluginClassLoader.loadClass(Unknown Source) ~[jpf.jar:1.0.0]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:520) ~[?:?]
+	... 29 more
+FATAL [AWT-EventQueue-0] 2024-07-02T12:58:25,248 RSUIPlugin - Fatal error starting Repast
+java.lang.NoClassDefFoundError: org/eclipse/jetty/server/Handler
+	at java.lang.Class.getDeclaredMethods0(Native Method) ~[?:?]
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:3402) ~[?:?]
+	at java.lang.Class.privateGetPublicMethods(Class.java:3427) ~[?:?]
+	at java.lang.Class.getMethods(Class.java:2019) ~[?:?]
+	at repast.simphony.engine.watcher.WatchAnnotationReader.findWatchAnnotation(WatchAnnotationReader.java:42) ~[?:?]
+	at repast.simphony.engine.watcher.WatchAnnotationReader.processClass(WatchAnnotationReader.java:30) ~[?:?]
+	at repast.simphony.engine.watcher.WatchAnnotationReader.processClasses(WatchAnnotationReader.java:36) ~[?:?]
+	at repast.simphony.scenario.ScenarioLoader.load(ScenarioLoader.java:155) ~[?:?]
+	at repast.simphony.ui.RSApplication.open(RSApplication.java:373) ~[?:?]
+	at repast.simphony.ui.RSAppConfigurator.postWindowOpen(RSAppConfigurator.java:39) ~[?:?]
+	at saf.core.ui.GUICreatorDelegate.runDisplay(GUICreatorDelegate.java:216) ~[?:?]
+	at saf.core.ui.GUICreator$1.run(GUICreator.java:18) ~[?:?]
+	at simphony.util.ThreadUtilities$Runner.run(ThreadUtilities.java:33) ~[saf.core.runtime.jar:?]
+	at simphony.util.ThreadUtilities.runInEventThread(ThreadUtilities.java:47) ~[saf.core.runtime.jar:?]
+	at saf.core.ui.GUICreator.runDisplay(GUICreator.java:16) ~[?:?]
+	at repast.simphony.ui.RSUIPlugin$1.run(RSUIPlugin.java:101) ~[?:?]
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318) ~[?:?]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:771) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:722) ~[?:?]
+	at java.awt.EventQueue$4.run(EventQueue.java:716) ~[?:?]
+	at java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86) ~[?:?]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:741) ~[?:?]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109) ~[?:?]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) ~[?:?]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:90) ~[?:?]
+Caused by: java.lang.ClassNotFoundException: org.eclipse.jetty.server.Handler
+	at org.java.plugin.standard.StandardPluginClassLoader.loadClass(Unknown Source) ~[jpf.jar:1.0.0]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:520) ~[?:?]
+	... 29 more

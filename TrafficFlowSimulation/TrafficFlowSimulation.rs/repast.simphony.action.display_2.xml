@@ -1,0 +1,96 @@
+<repast.simphony.gis.visualization.engine.GISDisplayDescriptor simphonyVersion="2.10.0">
+  <name>Test Display</name>
+  <type>GIS 3D</type>
+  <styles/>
+  <editedStyles/>
+  <netStyles>
+    <entry>
+      <string>Test Network</string>
+      <string>repast.simphony.visualization.gis3D.style.EditedNetworkStyleGIS</string>
+    </entry>
+    <entry>
+      <string>Network</string>
+      <string>repast.simphony.visualization.gis3D.style.DefaultNetworkStyleGIS</string>
+    </entry>
+  </netStyles>
+  <editedNetStyles>
+    <entry>
+      <string>Test Network</string>
+      <string>TestNetwork.style_0.xml</string>
+    </entry>
+    <entry>
+      <string>Network</string>
+      <null/>
+    </entry>
+  </editedNetStyles>
+  <frequency>ON_NEW</frequency>
+  <schedParams>
+    <start>1.0</start>
+    <interval>1.0</interval>
+    <priority>-Infinity</priority>
+    <pType>LAST</pType>
+    <duration>-1.0</duration>
+    <frequency>REPEAT</frequency>
+    <hashCode>292785204</hashCode>
+  </schedParams>
+  <layoutInterval>0</layoutInterval>
+  <layerOrder/>
+  <projections>
+    <repast.simphony.scenario.data.ProjectionData>
+      <id>Network</id>
+      <attributes/>
+      <type>network</type>
+    </repast.simphony.scenario.data.ProjectionData>
+    <repast.simphony.scenario.data.ProjectionData>
+      <id>Test Network</id>
+      <attributes/>
+      <type>network</type>
+    </repast.simphony.scenario.data.ProjectionData>
+    <repast.simphony.scenario.data.ProjectionData>
+      <id>TrafficFlowMap</id>
+      <attributes/>
+      <type>geography</type>
+    </repast.simphony.scenario.data.ProjectionData>
+  </projections>
+  <projectionDescriptors>
+    <entry>
+      <string>Test Network</string>
+      <repast.simphony.visualization.engine.DefaultProjectionDescriptor>
+        <proj reference="../../../../projections/repast.simphony.scenario.data.ProjectionData[2]"/>
+        <props/>
+      </repast.simphony.visualization.engine.DefaultProjectionDescriptor>
+    </entry>
+    <entry>
+      <string>Network</string>
+      <repast.simphony.visualization.engine.DefaultProjectionDescriptor>
+        <proj reference="../../../../projections/repast.simphony.scenario.data.ProjectionData"/>
+        <props/>
+      </repast.simphony.visualization.engine.DefaultProjectionDescriptor>
+    </entry>
+    <entry>
+      <string>TrafficFlowMap</string>
+      <repast.simphony.visualization.gis.GisProjectionDescriptor>
+        <proj reference="../../../../projections/repast.simphony.scenario.data.ProjectionData[3]"/>
+        <props/>
+      </repast.simphony.visualization.gis.GisProjectionDescriptor>
+    </entry>
+  </projectionDescriptors>
+  <props/>
+  <backgroundColor>
+    <red>255</red>
+    <green>255</green>
+    <blue>255</blue>
+    <alpha>255</alpha>
+  </backgroundColor>
+  <renderQuality>MEDIUM</renderQuality>
+  <viewType>FLAT</viewType>
+  <trackAgents>false</trackAgents>
+  <globeLayers>
+    <entry>
+      <string>i-cubed Landsat</string>
+      <boolean>false</boolean>
+    </entry>
+  </globeLayers>
+  <staticCoverages/>
+  <coverageLayers/>
+</repast.simphony.gis.visualization.engine.GISDisplayDescriptor>

@@ -1,18 +1,26 @@
-<repast.simphony.visualization.engine.CartesianDisplayDescriptor simphonyVersion="2.10.0">
-  <name>New Display</name>
-  <type>2D</type>
+<repast.simphony.gis.visualization.engine.GISDisplayDescriptor simphonyVersion="2.10.0">
+  <name>GIS Display</name>
+  <type>GIS 3D</type>
   <styles>
     <entry>
       <string>trafficFlowSimulation.TrafficSignal</string>
-      <string>repast.simphony.visualizationOGL2D.DefaultStyleOGL2D</string>
+      <string>repast.simphony.visualization.gis3D.style.DefaultMarkStyle</string>
     </entry>
     <entry>
-      <string>trafficFlowSimulation.Road</string>
-      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+      <string>trafficFlowSimulation.Junction</string>
+      <string>repast.simphony.visualization.gis3D.style.DefaultMarkStyle</string>
+    </entry>
+    <entry>
+      <string>trafficFlowSimulation.RoadNode</string>
+      <string>repast.simphony.visualization.gis3D.style.EditedMarkStyle</string>
+    </entry>
+    <entry>
+      <string>trafficFlowSimulation.Intersection</string>
+      <string>repast.simphony.visualization.gis3D.style.EditedMarkStyle</string>
     </entry>
     <entry>
       <string>trafficFlowSimulation.Vehicle</string>
-      <string>repast.simphony.visualizationOGL2D.DefaultStyleOGL2D</string>
+      <string>repast.simphony.visualization.gis3D.style.EditedMarkStyle</string>
     </entry>
   </styles>
   <editedStyles>
@@ -21,24 +29,28 @@
       <null/>
     </entry>
     <entry>
-      <string>trafficFlowSimulation.Road</string>
-      <string>trafficFlowSimulation.Road.style_0.xml</string>
+      <string>trafficFlowSimulation.RoadNode</string>
+      <string>trafficFlowSimulation.RoadNode.style_11.xml</string>
+    </entry>
+    <entry>
+      <string>trafficFlowSimulation.Intersection</string>
+      <string>trafficFlowSimulation.Intersection.style_10.xml</string>
     </entry>
     <entry>
       <string>trafficFlowSimulation.Vehicle</string>
-      <null/>
+      <string>trafficFlowSimulation.Vehicle.style_0.xml</string>
     </entry>
   </editedStyles>
   <netStyles>
     <entry>
       <string>Network</string>
-      <string>repast.simphony.visualization.editedStyle.EditedEdgeStyle2D</string>
+      <string>repast.simphony.visualization.gis3D.style.DefaultNetworkStyleGIS</string>
     </entry>
   </netStyles>
   <editedNetStyles>
     <entry>
       <string>Network</string>
-      <string>Network.style_0.xml</string>
+      <null/>
     </entry>
   </editedNetStyles>
   <frequency>ON_NEW</frequency>
@@ -49,26 +61,37 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>-1126150837</hashCode>
+    <hashCode>970799440</hashCode>
   </schedParams>
-  <layoutClassName>repast.simphony.visualization.visualization2D.Random2DLayout</layoutClassName>
-  <layoutProjection>Network</layoutProjection>
   <layoutInterval>0</layoutInterval>
   <layerOrder>
     <entry>
       <string>trafficFlowSimulation.TrafficSignal</string>
+      <int>4</int>
+    </entry>
+    <entry>
+      <string>trafficFlowSimulation.Junction</string>
       <int>0</int>
     </entry>
     <entry>
-      <string>trafficFlowSimulation.Road</string>
+      <string>trafficFlowSimulation.RoadNode</string>
+      <int>1</int>
+    </entry>
+    <entry>
+      <string>trafficFlowSimulation.Intersection</string>
       <int>2</int>
     </entry>
     <entry>
       <string>trafficFlowSimulation.Vehicle</string>
-      <int>1</int>
+      <int>3</int>
     </entry>
   </layerOrder>
   <projections>
+    <repast.simphony.scenario.data.ProjectionData>
+      <id>TrafficFlowMap</id>
+      <attributes/>
+      <type>geography</type>
+    </repast.simphony.scenario.data.ProjectionData>
     <repast.simphony.scenario.data.ProjectionData>
       <id>Network</id>
       <attributes/>
@@ -79,9 +102,16 @@
     <entry>
       <string>Network</string>
       <repast.simphony.visualization.engine.DefaultProjectionDescriptor>
-        <proj reference="../../../../projections/repast.simphony.scenario.data.ProjectionData"/>
+        <proj reference="../../../../projections/repast.simphony.scenario.data.ProjectionData[2]"/>
         <props/>
       </repast.simphony.visualization.engine.DefaultProjectionDescriptor>
+    </entry>
+    <entry>
+      <string>TrafficFlowMap</string>
+      <repast.simphony.visualization.gis.GisProjectionDescriptor>
+        <proj reference="../../../../projections/repast.simphony.scenario.data.ProjectionData"/>
+        <props/>
+      </repast.simphony.visualization.gis.GisProjectionDescriptor>
     </entry>
   </projectionDescriptors>
   <props/>
@@ -91,5 +121,15 @@
     <blue>255</blue>
     <alpha>255</alpha>
   </backgroundColor>
-  <valueLayers/>
-</repast.simphony.visualization.engine.CartesianDisplayDescriptor>
+  <renderQuality>MEDIUM</renderQuality>
+  <viewType>FLAT</viewType>
+  <trackAgents>false</trackAgents>
+  <globeLayers>
+    <entry>
+      <string>i-cubed Landsat</string>
+      <boolean>true</boolean>
+    </entry>
+  </globeLayers>
+  <staticCoverages/>
+  <coverageLayers/>
+</repast.simphony.gis.visualization.engine.GISDisplayDescriptor>
